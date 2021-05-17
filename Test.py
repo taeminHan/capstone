@@ -16,4 +16,4 @@ class TodoList(Resource):
 api.add_resource(TodoList, '/todos/')
 
 if __name__ == '__main__':
-    app.run(host="192.168.1.103", port=5000, debug=True)
+    app.run(host="192.168.1.103", port=6000, debug=True)
