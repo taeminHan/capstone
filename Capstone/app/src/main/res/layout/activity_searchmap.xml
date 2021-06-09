@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchMap">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="138dp"
+        android:background="#87CEFA"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_baseline_arrow_white_24" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text=" 편의점 검색"
+            android:textColor="@android:color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="72.5dp"
+        android:src="@drawable/test1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="원하는 목적지를 선택하세요"
+            android:textAlignment="center"
+            android:textColor="#0054FF"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/select1"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:background="@drawable/left_btn_background" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="0dp" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/right_btn_background" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="109dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:background="@drawable/left_btn_background" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="0dp" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/right_btn_background" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:background="@drawable/left_btn_background" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="0dp" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/right_btn_background" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="109dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:background="@drawable/left_btn_background" />
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="0dp" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/right_btn_background" />
+
+    </LinearLayout>
+
+</LinearLayout>

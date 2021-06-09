@@ -1,0 +1,113 @@
+package com.example.capstoneproject
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
+import android.widget.Toast
+import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
+import com.example.capstoneproject.databinding.ActivitySelectBinding
+import com.google.firebase.auth.FirebaseAuth
+import java.io.File
+import java.lang.Exception
+
+private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
+private const val TAG = "GOOGLE_SIGN_IN_TAG"
+
+class SelectActivity : AppCompatActivity() {
+    // 뷰 바인딩
+    private lateinit var binding: ActivitySelectBinding
+
+    // firebase 인증
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    // 사진 파일
+    private lateinit var photoFile: File
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_select)
+
+        // 바인딩 활성화
+        binding = ActivitySelectBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // 파이어베이스 활성화
+        firebaseAuth = FirebaseAuth.getInstance()
+        checkUser()
+
+        // 뒤로가기 버튼
+        binding.back.setOnClickListener {
+            firebaseAuth.signOut()
+            checkUser()
+        }
+
+        // 지도 버튼 활성화
+        binding.SearchMap.setOnClickListener {
+            onLoginButtonClicked()
+        }
+
+        // 카메라 버튼 활성화
+        binding.SearchCamera.setOnClickListener {
+            CameraChecked()
+        }
+    }
+
+    // 카메라 구현
+    private fun CameraChecked() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null) {
+            val dir = externalCacheDir
+            val file = File.createTempFile("photo_", ".jpg", dir)
+            val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
+            photoFile = file
+        }
+    }
+
+    // 유저 체크
+    private fun checkUser() {
+        // 현재 사용자 정보
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser == null) {
+            // 로그인 상태가 아닐때
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        } else {
+            // 유저 로그인 상태
+            val email = firebaseUser.email
+            Log.d(TAG, "SelectActivity - $email")
+        }
+    }
+
+    // 지도버튼 구현
+    private fun onLoginButtonClicked() {
+        try {
+            Log.d(TAG, "SelectActivity - onLoginButtonClicked() called")
+            val intent = Intent(this, SearchMap::class.java)
+            startActivity(intent)
+        } catch (e: Exception) {
+            Log.d(TAG, "SelectActivity - onLoginButtonClicked: ${e.message}")
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_CODE_FOR_IMAGE_CAPTURE -> {
+                if (resultCode == RESULT_OK) {
+//                    BitmapFactory.decodeFile(photoFile.absolutePath)?.let {
+//                        binding.image.setImageBitmap(it) }
+                    Glide.with(this).load(photoFile).into(binding.image)
+                    Log.d(TAG, "$photoFile")
+                } else {
+                    Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+}
