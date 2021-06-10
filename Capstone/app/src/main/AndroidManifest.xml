@@ -3,10 +3,11 @@
     package="com.example.capstoneproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <!-- 카메라 기능 -->
-    <uses-feature
-        android:name="android.hardware.camera2"
-        android:required="true" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
