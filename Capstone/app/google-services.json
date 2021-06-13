@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "574588398521-9rcd9u0cahjh68t1hr5ch4guu48creee.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.capstoneproject",
+            "certificate_hash": "dce0ec680f72dd83df589bd9fc0a072575c38eb0"
+          }
+        },
+        {
           "client_id": "574588398521-5ubs381ku6rhuehu4m1gk0ippt63nsf5.apps.googleusercontent.com",
           "client_type": 3
         }
