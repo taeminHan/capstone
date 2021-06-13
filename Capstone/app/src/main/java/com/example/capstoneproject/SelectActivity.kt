@@ -36,12 +36,13 @@ class SelectActivity : AppCompatActivity() {
 
         // 파이어베이스 활성화
         firebaseAuth = FirebaseAuth.getInstance()
-        checkUser()
+        //checkUser() 구글 유저 체크 보류
 
         // 뒤로가기 버튼
         binding.back.setOnClickListener {
             firebaseAuth.signOut()
-            checkUser()
+            //checkUser() 구글 유저 체크 보류
+            BackActivity()
         }
 
         // 지도 버튼 활성화
@@ -53,6 +54,13 @@ class SelectActivity : AppCompatActivity() {
         binding.SearchCamera.setOnClickListener {
             CameraChecked()
         }
+    }
+
+    // 뒤로가기 버튼 구현
+    private fun BackActivity() {
+        Log.d(TAG, "SelectActivity - BackActivity() called")
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     // 카메라 구현
