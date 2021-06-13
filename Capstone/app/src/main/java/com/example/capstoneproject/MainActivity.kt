@@ -133,10 +133,14 @@ class MainActivity : AppCompatActivity() {
 
     // 다음 화면으로 전환
     private fun onLoginButtonClicked() {
-        Log.d(TAG, "MainActivity - onLoginButtonClicked() called")
+        try {
+            Log.d(TAG, "MainActivity - onLoginButtonClicked() called")
+            val intent = Intent(this, SelectActivity::class.java)
+            startActivity(intent)
+        } catch (e : Exception) {
+            Log.d(TAG, "실패 ${e.message}")
+        }
 
-        val intent = Intent(this, SelectActivity::class.java)
-        startActivity(intent)
     }
 
 }
