@@ -12,6 +12,12 @@ import com.example.capstoneproject.databinding.ActivitySelectBinding
 import com.google.firebase.auth.FirebaseAuth
 import java.io.File
 import java.lang.Exception
+import com.google.gson.GsonBuilder
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Field
+import retrofit2.http.POST
+import java.util.*
 
 private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
 private const val TAG = "GOOGLE_SIGN_IN_TAG"
@@ -73,6 +79,22 @@ class SelectActivity : AppCompatActivity() {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
             startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
             photoFile = file
+
+
+        }
+        var instance: Retrofit? = null
+        val gson = GsonBuilder().setLenient().create()
+        val url = "http://13.125.224.42:5000/test"
+
+        fun getInstance(): Retrofit{
+            if (instance == null){
+                instance = Retrofit.Builder()
+                    .baseUrl(url)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build()
+
+            }
+            return instance!!
         }
     }
 
