@@ -1,23 +1,22 @@
 package com.example.capstoneproject
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.media.Image
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.capstoneproject.databinding.ActivitySelectBinding
 import com.google.firebase.auth.FirebaseAuth
+import java.io.BufferedReader
 import java.io.File
-import java.lang.Exception
-import com.google.gson.GsonBuilder
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Field
-import retrofit2.http.POST
-import java.util.*
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import kotlin.concurrent.thread
 
 private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
 private const val TAG = "GOOGLE_SIGN_IN_TAG"
@@ -80,22 +79,8 @@ class SelectActivity : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
             photoFile = file
 
-
         }
-        var instance: Retrofit? = null
-        val gson = GsonBuilder().setLenient().create()
-        val url = "http://13.125.224.42:5000/test"
 
-        fun getInstance(): Retrofit{
-            if (instance == null){
-                instance = Retrofit.Builder()
-                    .baseUrl(url)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build()
-
-            }
-            return instance!!
-        }
     }
 
     // 유저 체크
@@ -121,8 +106,42 @@ class SelectActivity : AppCompatActivity() {
             startActivity(intent)
         } catch (e: Exception) {
             Log.d(TAG, "SelectActivity - onLoginButtonClicked: ${e.message}")
+
         }
 
+    }
+    private fun networking(urlString: String) {
+        thread(start=true) {
+            // 네트워킹 예외처리를 위한 try ~ catch 문
+            try {
+                val url = URL(urlString)
+
+                // 서버와의 연결 생성
+                val urlConnection = url.openConnection() as HttpURLConnection
+                urlConnection.requestMethod = "GET"
+
+                if (urlConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    // 데이터 읽기
+                    val streamReader = InputStreamReader(urlConnection.inputStream)
+                    val buffered = BufferedReader(streamReader)
+
+                    val content = StringBuilder()
+                    while(true) {
+                        val line = buffered.readLine() ?: break
+                    }
+                    print(content)
+                    // 스트림과 커넥션 해제
+                    buffered.close()
+                    urlConnection.disconnect()
+                    runOnUiThread {
+                        // UI 작업
+                        Toast.makeText(this, content,Toast.LENGTH_LONG).show()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -134,6 +153,7 @@ class SelectActivity : AppCompatActivity() {
 //                        binding.image.setImageBitmap(it) }
                     Glide.with(this).load(photoFile).into(binding.image)
                     Log.d(TAG, "$photoFile")
+                    networking("http://13.125.224.42:5000/")
                 } else {
                     Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
                 }
