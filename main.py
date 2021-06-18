@@ -1,4 +1,5 @@
 from Detection_img import predict
+from flask import jsonify
 import flask
 import werkzeug
 import time
@@ -21,7 +22,7 @@ def handle_request():
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
         predict(timestr + '_' + filename)
-    return "Image(s) Uploaded Successfully. Come Back Soon."
+    return jsonify({'object':'코카콜라'})
 
 
 app.run(host="0.0.0.0", port=5000, debug=True)
