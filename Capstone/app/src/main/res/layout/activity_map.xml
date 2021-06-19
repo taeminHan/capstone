@@ -33,12 +33,15 @@
         android:layout_height="72.5dp"
         android:src="@drawable/test1" />
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="카카오맵 위치"
-        android:textAlignment="center"/>
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="81dp"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal">
 
-
+    </LinearLayout>
 
 </LinearLayout>
