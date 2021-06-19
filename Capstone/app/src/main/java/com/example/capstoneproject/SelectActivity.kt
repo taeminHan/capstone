@@ -1,6 +1,7 @@
 package com.example.capstoneproject
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -10,10 +11,8 @@ import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.capstoneproject.databinding.ActivitySelectBinding
 import com.google.firebase.auth.FirebaseAuth
-import okhttp3.*
 import java.io.BufferedReader
 import java.io.File
-import java.io.IOException
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
@@ -111,50 +110,39 @@ class SelectActivity : AppCompatActivity() {
         }
 
     }
+    private fun networking(urlString: String) {
+        thread(start=true) {
+            // 네트워킹 예외처리를 위한 try ~ catch 문
+            try {
+                val url = URL(urlString)
 
-    private fun img_networking(urlString: String, file: File) {
-        // URL을 만들어 주고
-        val url = URL(urlString)
+                // 서버와의 연결 생성
+                val urlConnection = url.openConnection() as HttpURLConnection
+                urlConnection.requestMethod = "GET"
 
-        //데이터를 담아 보낼 바디를 만든다
-//        val requestBody : RequestBody = FormBody.Builder()
-//            .add("id","아이디")
-//            .build()
-        // OkHttp Request 를 만들어준다.
-        val requestBody: RequestBody = MultipartBody.Builder().setType(MultipartBody.FORM)
-            .addFormDataPart(
-                "photo",
-                "photo.png",
-                RequestBody.create(MediaType.parse("image/jpg"), file)
-            )
-            .build()
-        val request = Request.Builder()
-            .url(url)
-            .post(requestBody)
-            .build()
+                if (urlConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    // 데이터 읽기
+                    val streamReader = InputStreamReader(urlConnection.inputStream)
+                    val buffered = BufferedReader(streamReader)
 
-        // 클라이언트 생성
-        val client = OkHttpClient()
-
-        Log.d("전송 주소 ",urlString)
-
-        // 요청 전송
-        client.newCall(request).enqueue(object : Callback {
-
-            override fun onResponse(call: Call, response: Response) {
-                Log.d("요청","요청 완료")
-                Log.d("파일 이름:", photoFile.name)
-                var text = response.toString()
-                Log.d("리스톤: ", text)
+                    val content = StringBuilder()
+                    while(true) {
+                        val line = buffered.readLine() ?: break
+                    }
+                    print(content)
+                    // 스트림과 커넥션 해제
+                    buffered.close()
+                    urlConnection.disconnect()
+                    runOnUiThread {
+                        // UI 작업
+                        Toast.makeText(this, content,Toast.LENGTH_LONG).show()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d("요청","요청 실패 ")
-            }
-
-
-        })
+        }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -163,9 +151,9 @@ class SelectActivity : AppCompatActivity() {
                 if (resultCode == RESULT_OK) {
 //                    BitmapFactory.decodeFile(photoFile.absolutePath)?.let {
 //                        binding.image.setImageBitmap(it) }
-//                    Glide.with(this).load(photoFile).into(binding.image)
-//                    Log.d(TAG, "$photoFile")
-                    img_networking("ec2-3-36-99-241.ap-northeast-2.compute.amazonaws.com", photoFile)
+                    Glide.with(this).load(photoFile).into(binding.image)
+                    Log.d(TAG, "$photoFile")
+                    networking("http://13.125.224.42:5000/")
                 } else {
                     Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
                 }
