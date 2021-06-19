@@ -19,12 +19,12 @@ import androidx.core.content.ContextCompat
 import com.example.capstoneproject.databinding.ActivityMapBinding
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+import kotlin.system.exitProcess
 
 class MapApi : AppCompatActivity() {
 
     private lateinit var binding: ActivityMapBinding
     private val ACCESS_FINE_LOCATION = 1000
-    private lateinit var mapView: MapView
 
     private companion object {
         private const val TAG = "로그"
@@ -36,17 +36,43 @@ class MapApi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
-
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val map = MapView(this)
+        val mapView = MapView(this)
+
+        // 내 위치값 가져오기
+        fun startTracking() {
+            val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                val lm: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                try {
+                    val userNowLocation: Location? =
+                        lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+                    val uLatitude = userNowLocation!!.latitude
+                    val uLongitude = userNowLocation.longitude
+                    val uNowPosition = MapPoint.mapPointWithGeoCoord(uLatitude, uLongitude)
+                    mapView.setMapCenterPoint(uNowPosition, true)
+                }catch(e: NullPointerException){
+                    Log.e("LOCATION_ERROR", e.toString())
+                    ActivityCompat.finishAffinity(this)
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    exitProcess(0)
+                }
+            }else{
+                Toast.makeText(this, "위치 권한이 없습니다.", Toast.LENGTH_SHORT).show()
+                ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE )
+            }
+        }
         try {
-            binding.mapView.addView(map)
+            binding.mapView.addView(mapView)
             Log.d(TAG, "성공")
             if (checkLocationService()) {
                 Toast.makeText(this, "Gps 켜짐", Toast.LENGTH_SHORT).show()
                 permissionCheck()
+                startTracking()
             } else {
                 Toast.makeText(this, "Gps 꺼짐", Toast.LENGTH_SHORT).show()
             }
@@ -54,7 +80,6 @@ class MapApi : AppCompatActivity() {
         } catch (e: Exception) {
             Log.d(TAG, "실패 ${e.message}")
         }
-
 
         binding.back.setOnClickListener {
             BackActivity()
@@ -68,7 +93,7 @@ class MapApi : AppCompatActivity() {
     }
 
     private fun BackActivity() {
-        Log.d(MapApi.TAG, "MapApi - BackActivity() called")
+        Log.d(TAG, "MapApi - BackActivity() called")
 
         val intent = Intent(this, SearchMap::class.java)
         startActivity(intent)
@@ -131,79 +156,22 @@ class MapApi : AppCompatActivity() {
             }
         } else {
             // 권한이 있는 상태
-            startTracking()
+//            startTracking()
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    )
-    {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == ACCESS_FINE_LOCATION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // 권한 요청 후 승인됨 (추적 시작)
                 Toast.makeText(this, "위치 권한이 승인되었습니다", Toast.LENGTH_SHORT).show()
-                startTracking()
+//                startTracking()
             } else {
                 // 권한 요청 후 거절됨 (다시 요청 or 토스트)
                 Toast.makeText(this, "위치 권한이 거절되었습니다", Toast.LENGTH_SHORT).show()
                 permissionCheck()
             }
-        }
-    }
-
-
-    private fun stopTracking() {
-//        try {
-//            mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
-//            Log.d(TAG, "내위치 추적 성공 $mapView")
-//        } catch (e: Exception) {
-//            Log.d(TAG, "내위치 추적 실패 ${e.message}")
-//            Log.d(TAG, "이유 $mapView")
-//        }
-    }
-
-    // 위치추적 시작
-    private fun startTracking() {
-        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-            val lm: LocationManager =
-                getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            try {
-                val userNowLocation: Location? = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
-                val uLatitude = userNowLocation!!.latitude
-                val uLongitude = userNowLocation.longitude
-
-                Log.d(TAG, "${uLatitude}, $uLongitude ")
-                val uNowPosition = MapPoint.mapPointWithCONGCoord(uLatitude, uLongitude)
-                Log.d(TAG, "$uNowPosition")
-                try {
-                    mapView.setMapCenterPoint(uNowPosition, true)
-                    Log.d(TAG, "결과 $mapView")
-                    Log.d(TAG, "추적 성공")
-                } catch (e: Exception) {
-                    Log.d(TAG, "추적 실패")
-                    Log.d(TAG, "${e.message}")
-                }
-
-            } catch (e: NullPointerException) {
-                Log.e("LOCATION_ERROR", e.toString())
-                ActivityCompat.finishAffinity(this)
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                System.exit(0)
-            }
-        } else {
-            Toast.makeText(this, "위치 권한이 없습니다.", Toast.LENGTH_SHORT).show()
-            ActivityCompat.requestPermissions(
-                this,
-                REQUIRED_PERMISSIONS,
-                PERMISSIONS_REQUEST_CODE
-            )
         }
     }
 }
