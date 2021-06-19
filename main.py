@@ -1,4 +1,4 @@
-from Detection_img import predict
+# from Detection_img import predict
 from flask import jsonify
 import flask
 import werkzeug
@@ -21,7 +21,7 @@ def handle_request():
         timestr = time.strftime("%Y%m%d-%H%M%S")
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
-        predict(timestr + '_' + filename)
+        # predict(timestr + '_' + filename)
     return jsonify({'object':'코카콜라'})
 
 
