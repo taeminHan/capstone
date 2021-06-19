@@ -165,7 +165,7 @@ class SelectActivity : AppCompatActivity() {
 //                        binding.image.setImageBitmap(it) }
 //                    Glide.with(this).load(photoFile).into(binding.image)
 //                    Log.d(TAG, "$photoFile")
-                    img_networking("ec2-3-36-99-241.ap-northeast-2.compute.amazonaws.com", photoFile)
+                    img_networking("http://3.36.99.241:5000/img", photoFile)
                 } else {
                     Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
                 }
