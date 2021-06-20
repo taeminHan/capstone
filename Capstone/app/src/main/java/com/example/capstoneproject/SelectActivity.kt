@@ -1,24 +1,22 @@
 package com.example.capstoneproject
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import com.bumptech.glide.Glide
 import com.example.capstoneproject.databinding.ActivitySelectBinding
 import com.google.firebase.auth.FirebaseAuth
 import okhttp3.*
-import java.io.BufferedReader
+import org.json.JSONObject
 import java.io.File
 import java.io.IOException
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
 import java.net.URL
-import kotlin.concurrent.thread
+
 
 private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
 private const val TAG = "GOOGLE_SIGN_IN_TAG"
@@ -132,27 +130,38 @@ class SelectActivity : AppCompatActivity() {
             .url(url)
             .post(requestBody)
             .build()
-
         // 클라이언트 생성
         val client = OkHttpClient()
 
         Log.d("전송 주소 ",urlString)
-
         // 요청 전송
         client.newCall(request).enqueue(object : Callback {
 
             override fun onResponse(call: Call, response: Response) {
                 Log.d("요청","요청 완료")
                 Log.d("파일 이름:", photoFile.name)
-                var text = response.toString()
-                Log.d("리스톤: ", text)
+
+//                val result: String = Gson().toJson(response.body()!!.string())
+//                Log.d("JSON", result)
+                val resStr = response.body()!!.string()
+                val json = JSONObject(resStr)
+
+                val obj = json.getString("object")
+                val price = json.getString("price")
+                val facts = json.getString("nutrition_facts")
+                Handler(Looper.getMainLooper()).post{
+                    Toast.makeText(applicationContext, obj,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, price+"원",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, facts,Toast.LENGTH_SHORT).show()
+                }
             }
             override fun onFailure(call: Call, e: IOException) {
                 Log.d("요청","요청 실패 ")
             }
-
-
         })
+
+
+
     }
 
 
