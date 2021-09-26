@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">withsullivan</string>
+    <string name="withsullivan">With Sullivan</string>
+    <string name="kakao_loginbutton">kakao_logician</string>
+    <string name="with_sullivan">With Sullivan</string>
+    <string name="kakao_login">Kakao login</string>
+    <string name="kakao_login_button" />
+    <string name="photo">사진촬영</string>
+    <string name="camera" />
+</resources>

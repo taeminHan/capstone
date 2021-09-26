@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_searchmap.xml",
+        "source": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\src\\main\\res\\layout\\activity_searchmap.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_detection.xml",
+        "source": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\src\\main\\res\\layout\\activity_detection.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_map.xml",
+        "source": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\src\\main\\res\\layout\\activity_map.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_select.xml",
+        "source": "C:\\Users\\kyle\\Desktop\\Project\\capstone\\Capstone\\app\\src\\main\\res\\layout\\activity_select.xml"
+    }
+]

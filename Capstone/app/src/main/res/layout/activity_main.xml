@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:theme="@style/Theme.AppCompat.NoActionBar"
+    >
+
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="304dp"
+        android:layout_height="167dp"
+        android:layout_marginEnd="72dp"
+        android:text="@string/with_sullivan"
+        android:textAlignment="viewStart"
+        android:textSize="70sp"
+        android:textColor="@color/MYBLUE"
+        android:fontFamily="@font/nanumgothicblod"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/with_sullivan"
+        app:layout_constraintVertical_bias="0.225" />
+
+    <ImageButton
+        android:id="@+id/kakaobutton"
+        android:layout_width="299dp"
+        android:layout_height="61dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/kakao_login"
+        android:src="@drawable/kakao_login_medium_wide"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.925"
+        tools:context=".MainActivity" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

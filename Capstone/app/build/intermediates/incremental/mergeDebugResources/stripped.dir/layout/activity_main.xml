@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="141dp"
+        android:background="#87CEFA"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="    로그인"
+            android:textColor="@android:color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="#87CEFA">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="   Capstone make\n   app"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="bottom"
+        android:background="#87CEFA"
+        android:src="@drawable/circle_2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="112dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="79dp"
+            android:gravity="center_vertical"
+            android:text="        먼저 로그인이 필요해요 :)"
+            android:textColor="#1E90FF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+<!--    <com.google.android.gms.common.SignInButton-->
+<!--        android:id="@+id/googleSignInBtn"-->
+<!--        android:layout_width="301dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center" />-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <ImageButton
+        android:id="@+id/kakao_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/kakao_login_medium_wide" />
+
+
+</LinearLayout>

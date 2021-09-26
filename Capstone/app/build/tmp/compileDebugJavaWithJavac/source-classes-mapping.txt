@@ -1,0 +1,10 @@
+com/cap/withsullivan/BuildConfig.java
+ com.cap.withsullivan.BuildConfig
+com/cap/withsullivan/databinding/ActivityDetectBinding.java
+ com.cap.withsullivan.databinding.ActivityDetectBinding
+com/cap/withsullivan/databinding/ActivityMainBinding.java
+ com.cap.withsullivan.databinding.ActivityMainBinding
+com/cap/withsullivan/databinding/ActivityMapBinding.java
+ com.cap.withsullivan.databinding.ActivityMapBinding
+com/cap/withsullivan/databinding/ActivityMenuBinding.java
+ com.cap.withsullivan.databinding.ActivityMenuBinding
