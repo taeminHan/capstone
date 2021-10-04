@@ -30,7 +30,7 @@ url = 'https://pyony.com/search/?event_type=&category=1&item=&sort=&q='
 url2 = "https://www.fatsecret.kr/%EC%B9%BC%EB%A1%9C%EB%A6%AC-%EC%98%81%EC%96%91%EC%86%8C/search?q=%ec%9d%8c%eb%a3%8c%ec%88%98&pg="
 insert_query = "insert into event (shopname, beveragename, eventname, price) values (%s, %s, %s, %s);"
 insert_query2 = "insert into nutritionfacts (foodname, kcal, carbohydrate, protein, Fat) values (%s, %s, %s, %s, %s);"
-"""for page in range(0, 36):
+for page in range(0, 36):
     response = requests.get(url2+str(page))
     for i in range(0, 10):
         if response.status_code == 200:
@@ -47,7 +47,6 @@ insert_query2 = "insert into nutritionfacts (foodname, kcal, carbohydrate, prote
             Fat = soup2.select('.nutrient.black.right.tRight')[3].get_text()
             cur.execute(insert_query2, (foodname, kcal, carbohydrate, protein, Fat))
             mydb.commit()
-"""
 for page in range(0, 80):
     response = requests.get(url+str(page))
 
