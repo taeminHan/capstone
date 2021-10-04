@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="59cdd100-6255-4102-bb79-b4fa729e19f8" name="디폴트 변경 목록" comment="db test&#10;&#10;ec2 db test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asd.py" beforeDir="false" afterPath="$PROJECT_DIR$/asd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asd.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwe.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +21,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="3def24ea-1a95-48bd-8fa8-3a4b0f852506" />
   </component>
   <component name="ProjectId" id="1u7QquSSA8RFqbvLVNZdhADPm1m" />
   <component name="ProjectViewState">
@@ -37,7 +42,7 @@
       <recent name="E:\asdasd\capstone" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.asd">
+  <component name="RunManager" selected="Python.MariaDBSetting">
     <configuration name="Detection_img" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="capstone" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -60,7 +65,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="asd" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="MariaDBSetting" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="capstone" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -72,7 +77,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/asd.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Jang\PycharmProjects\capstone\MariaDBSetting.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -147,7 +152,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.asd" />
+        <item itemvalue="Python.MariaDBSetting" />
         <item itemvalue="Python.qwe" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.Detection_img" />
@@ -186,7 +191,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633356148479</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="db test&#10;&#10;ec2 db test">
+      <created>1633357637974</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1633357637974</updated>
+    </task>
+    <task id="LOCAL-00005" summary="db test&#10;&#10;ec2 db test">
+      <created>1633357714110</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1633357714110</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
