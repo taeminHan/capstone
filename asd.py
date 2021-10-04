@@ -15,7 +15,7 @@ mydb = pymysql.connect(
     )
 
 cur = mydb.cursor()
-cur.execute("truncate event;")
+"""cur.execute("truncate event;")"""
 """cur.execute("truncate nutritionfacts")"""
 
 url = 'https://pyony.com/search/?event_type=&category=1&item=&sort=&q='
