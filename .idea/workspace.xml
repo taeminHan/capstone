@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59cdd100-6255-4102-bb79-b4fa729e19f8" name="디폴트 변경 목록" comment="append deep-learning model &#10;&#10;function-predict is model">
-      <change afterPath="$PROJECT_DIR$/asd.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwe.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/img_static.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/capstone.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/capstone.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="59cdd100-6255-4102-bb79-b4fa729e19f8" name="디폴트 변경 목록" comment="db test&#10;&#10;ec2 db test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624015780032</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="db test&#10;&#10;ec2 db test">
+      <created>1633355156718</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1633355156718</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +198,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="append deep-learning model &#10;&#10;function-predict is model" />
-    <option name="LAST_COMMIT_MESSAGE" value="append deep-learning model &#10;&#10;function-predict is model" />
+    <MESSAGE value="db test&#10;&#10;ec2 db test" />
+    <option name="LAST_COMMIT_MESSAGE" value="db test&#10;&#10;ec2 db test" />
   </component>
 </project>
