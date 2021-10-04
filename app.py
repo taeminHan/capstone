@@ -8,10 +8,11 @@ app = Flask(__name__)
 def page_not_found(error):
 	app.logger.error(error)
 	return render_template('page_not_found.html'), 404
+
 #HTML 렌더링
 @app.route('/')
 def home_page():
-	return render_template('home.html')
+	return render_template('img_static.html')
 
 #업로드 HTML 렌더링
 @app.route('/upload')
@@ -34,7 +35,10 @@ def upload_file():
 def down_page():
 	files = os.listdir("./uploads")
 	return render_template('filedown.html',files=files)
-
+@app.route("/img")
+def img():
+	def home():
+		return render_template('img_static.html')
 #파일 다운로드 처리
 @app.route('/fileDown', methods = ['GET', 'POST'])
 def down_file():
@@ -45,10 +49,7 @@ def down_file():
 			if(x==request.form['file']):
 				sw=1
 				path = "./uploads/" 
-				return send_file(path + request.form['file'],
-						attachment_filename = request.form['file'],
-						as_attachment=True)
-
+				return send_file(path + request.form['file'], attachment_filename = request.form['file'], as_attachment=True)
 		return render_template('page_not_found.html')
 	else:
 		return render_template('page_not_found.html')
