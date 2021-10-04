@@ -15,7 +15,7 @@ mydb = pymysql.connect(
     )
 
 cur = mydb.cursor()
-"""cur.execute("truncate event;")"""
+cur.execute("truncate event;")
 """cur.execute("truncate nutritionfacts")"""
 
 """
