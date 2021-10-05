@@ -73,3 +73,5 @@ for page in range(0, 80):
             mydb.commit()
     else:
         print(response.status_code)
+
+print("Done")
