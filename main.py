@@ -13,10 +13,9 @@ from bs4 import BeautifulSoup
 
 mydb = pymysql.connect(
         user='root',
-        passwd='smtown05',
-        host='127.0.0.1',
+        passwd='sulivan',
+        host='localhost',
         db='sulivan',
-        port=3307,
         charset='utf8'
     )
 mycursor = mydb.cursor()

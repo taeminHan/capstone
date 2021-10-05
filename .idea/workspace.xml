@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59cdd100-6255-4102-bb79-b4fa729e19f8" name="디폴트 변경 목록" comment="db test&#10;&#10;ec2 db test" />
+    <list default="true" id="59cdd100-6255-4102-bb79-b4fa729e19f8" name="디폴트 변경 목록" comment="db test&#10;&#10;ec2 db test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +40,7 @@
       <recent name="E:\asdasd\capstone" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.MariaDBSetting">
+  <component name="RunManager" selected="Python.main">
     <configuration name="Detection_img" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="capstone" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -147,9 +150,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.MariaDBSetting" />
         <item itemvalue="Python.qwe" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.Detection_img" />
       </list>
     </recent_temporary>
@@ -221,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633358589201</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="db test&#10;&#10;ec2 db test">
+      <created>1633358892517</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1633358892517</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
