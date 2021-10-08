@@ -8,7 +8,7 @@ import json
 
 mydb = pymysql.connect(
         user='root',
-        passwd='root',
+        passwd='sulivan',
         host='localhost',
         db='sulivan',
         charset='utf8'
