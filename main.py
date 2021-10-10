@@ -41,9 +41,12 @@ def handle_request():
         mycursor.execute(sql2)
         price = mycursor.fetchall()
         eventname = price[0][2]
+        name2 = "코카콜라"
+        price2 = "1500"
+        nutrition2 = "dfsfd"
 
 
-    return jsonify({'object': name, 'price': price[0][3], 'nutrition_facts': nutrition[0]})
+    return jsonify({'object': name2, 'price': price2, 'nutrition_facts': nutrition2})
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
