@@ -26,27 +26,24 @@ app = flask.Flask(__name__)
 def handle_request():
     files_ids = list(flask.request.files)
     image_num = 1
-
     for file_id in files_ids:
         imagefile = flask.request.files[file_id]
         filename = werkzeug.utils.secure_filename(imagefile.filename)
         timestr = time.strftime("%Y%m%d-%H%M%S")
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
-        name = predict(timestr + '_' + filename)
-        sql = 'select * from nutritionfacts where foodname="{}"'.format(name)
-        sql2 = 'select * from event where beveragename like "%{}%"'.format(name)
+        #name = predict(timestr + '_' + filename)
+        sql = 'select * from nutritionfacts where foodname like "%{}%"'.format('코카콜라')
+        sql2 = 'select * from beverage where beveragename like "%{}%"'.format('코카콜라')
+        sql3 = 'select * from beverage where beveragename like "%{}%"'.format('코카콜라')
         mycursor.execute(sql)
         nutrition = mycursor.fetchall()
         mycursor.execute(sql2)
         price = mycursor.fetchall()
-        eventname = price[0][2]
         name2 = "코카콜라"
-        price2 = "1500"
-        nutrition2 = "dfsfd"
 
 
-    return jsonify({'object': name2, 'price': price2, 'nutrition_facts': nutrition2})
+    return jsonify({'object': name2, 'price': price[0][1], 'nutrition_facts': nutrition[0][1:]})
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
