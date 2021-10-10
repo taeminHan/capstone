@@ -43,7 +43,7 @@ def handle_request():
         eventname = price[0][2]
 
 
-    return jsonify({'object': name, 'price': price[0][3], 'nutrition_facts': nutrition[0], 'eventname': eventname})
+    return jsonify({'object': name, 'price': price[0][3], 'nutrition_facts': nutrition[0]})
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

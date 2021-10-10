@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59cdd100-6255-4102-bb79-b4fa729e19f8" name="디폴트 변경 목록" comment="db test&#10;&#10;ec2 db test">
+    <list default="true" id="59cdd100-6255-4102-bb79-b4fa729e19f8" name="디폴트 변경 목록" comment="DB Setting&#10;&#10;DB Setting test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MariaDBSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/MariaDBSetting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633682822032</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="DB Setting&#10;&#10;DB Setting test">
+      <created>1633767147633</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1633767147633</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,6 +308,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="append deep-learning model &#10;&#10;function-predict is model" />
     <MESSAGE value="db test&#10;&#10;ec2 db test" />
-    <option name="LAST_COMMIT_MESSAGE" value="db test&#10;&#10;ec2 db test" />
+    <MESSAGE value="DB Setting&#10;&#10;DB Setting test" />
+    <option name="LAST_COMMIT_MESSAGE" value="DB Setting&#10;&#10;DB Setting test" />
   </component>
 </project>
