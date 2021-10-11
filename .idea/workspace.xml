@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="59cdd100-6255-4102-bb79-b4fa729e19f8" name="디폴트 변경 목록" comment="DB Setting&#10;&#10;DB Setting test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detection_img.py" beforeDir="false" afterPath="$PROJECT_DIR$/Detection_img.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MariaDBSetting.py" beforeDir="false" afterPath="$PROJECT_DIR$/MariaDBSetting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,15 +34,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jang\PycharmProjects" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\asdasd\capstone" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.MariaDBSetting (1)">
+  <component name="RunManager" selected="Python.Detection_img">
     <configuration name="Detection_img" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="capstone" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -170,11 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.MariaDBSetting (1)" />
+        <item itemvalue="Python.Detection_img" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.MariaDBSetting (1)" />
         <item itemvalue="Python.MariaDBSetting" />
         <item itemvalue="Python.qwe" />
-        <item itemvalue="Python.Detection_img" />
       </list>
     </recent_temporary>
   </component>
@@ -287,7 +293,28 @@
       <option name="project" value="LOCAL" />
       <updated>1633767147633</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="DB Setting&#10;&#10;DB Setting test">
+      <created>1633875107255</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1633875107255</updated>
+    </task>
+    <task id="LOCAL-00016" summary="DB Setting&#10;&#10;DB Setting test">
+      <created>1633875350713</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1633875350713</updated>
+    </task>
+    <task id="LOCAL-00017" summary="DB Setting&#10;&#10;DB Setting test">
+      <created>1633879417930</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1633879417930</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,5 +337,16 @@
     <MESSAGE value="db test&#10;&#10;ec2 db test" />
     <MESSAGE value="DB Setting&#10;&#10;DB Setting test" />
     <option name="LAST_COMMIT_MESSAGE" value="DB Setting&#10;&#10;DB Setting test" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MariaDBSetting.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -32,7 +32,10 @@ def handle_request():
         timestr = time.strftime("%Y%m%d-%H%M%S")
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
-        #name = predict(timestr + '_' + filename)
+        print(timestr + '_' + filename)
+        time.sleep(3)
+        name = predict(timestr + '_' + filename)
+        print(name)
         sql = 'select * from nutritionfacts where foodname like "%{}%"'.format('코카콜라')
         sql2 = 'select * from beverage where beveragename like "%{}%"'.format('코카콜라')
         sql3 = 'select * from beverage where beveragename like "%{}%"'.format('코카콜라')
