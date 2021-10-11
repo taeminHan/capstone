@@ -46,7 +46,7 @@ def handle_request():
         name2 = "코카콜라"
 
 
-    return jsonify({'object': name2, 'price': price[0][1], 'nutrition_facts': nutrition[0][1:]})
+    return jsonify({'object': name2, 'price': price, 'nutrition_facts': nutrition})
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
