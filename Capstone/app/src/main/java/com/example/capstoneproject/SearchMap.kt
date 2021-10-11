@@ -43,8 +43,9 @@ class SearchMap : AppCompatActivity() {
     private fun BackActivity() {
         Log.d(TAG, "SearchMap - BackActivity() called")
 
-        val intent = Intent(this, SelectActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, SelectActivity::class.java)
+//        startActivity(intent)
+        finish()
     }
 
 }

@@ -59,13 +59,26 @@ class SelectActivity : AppCompatActivity() {
         binding.SearchCamera.setOnClickListener {
             CameraChecked()
         }
+
+        binding.DrinkCamera.setOnClickListener {
+            DrinkChecked()
+        }
+
+    }
+
+    // 음성으로 음료 검색하기
+    private fun DrinkChecked() {
+        Log.d(TAG, "SelectActivity - DrinkChecked() called")
+        val intent = Intent(this, DrinkCamera::class.java)
+        startActivity(intent)
     }
 
     // 뒤로가기 버튼 구현
     private fun BackActivity() {
         Log.d(TAG, "SelectActivity - BackActivity() called")
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, MainActivity::class.java)
+//        startActivity(intent)
+        finish()
     }
 
     // 카메라 구현
