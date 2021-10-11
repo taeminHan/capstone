@@ -32,21 +32,22 @@ def handle_request():
         timestr = time.strftime("%Y%m%d-%H%M%S")
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
-        print(timestr + '_' + filename)
-        time.sleep(3)
         name = predict(timestr + '_' + filename)
-        print(name)
-        sql = 'select * from nutritionfacts where foodname like "%{}%"'.format('코카콜라')
-        sql2 = 'select * from beverage where beveragename like "%{}%"'.format('코카콜라')
-        sql3 = 'select * from beverage where beveragename like "%{}%"'.format('코카콜라')
+        sql = 'select * from nutritionfacts where foodname like "%{}%"'.format(name)
+        sql2 = 'select * from beverage where beveragename like "%{}%"'.format(name)
+        sql3 = 'select * from event where beveragename like "%{}%"'.format(name)
         mycursor.execute(sql)
         nutrition = mycursor.fetchall()
         mycursor.execute(sql2)
         price = mycursor.fetchall()
-        name2 = "코카콜라"
+        mycursor.execute(sql3)
+        event = mycursor.fetchall()
+        if len(event) > 1:
+            event = event[0][2] + "행사상품입니다."
+        else:
+            event = "행사상품이아닙니다."
 
-
-    return jsonify({'object': name2, 'price': price, 'nutrition_facts': nutrition})
+    return jsonify({'object': name, 'price': price[0][1]+"원", 'nutrition_facts': nutrition[0][1:], 'event':event})
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
