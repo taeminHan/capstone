@@ -70,6 +70,7 @@
             />
 
         <TextView
+            android:id="@+id/result"
             android:layout_width="340dp"
             android:layout_height="150dp"
             android:text="음성 인식 결과"

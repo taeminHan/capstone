@@ -60,7 +60,7 @@ class DrinkCamera : AppCompatActivity() {
             val i = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-            i.putExtra(RecognizerIntent.EXTRA_PROMPT, "Say something!")
+            i.putExtra(RecognizerIntent.EXTRA_PROMPT, "원하는 음료를 말씀하세요.")
             startActivityForResult(i,RQ_SOEECH_REC)
         }
     }
