@@ -76,8 +76,6 @@ class SelectActivity : AppCompatActivity() {
     // 뒤로가기 버튼 구현
     private fun BackActivity() {
         Log.d(TAG, "SelectActivity - BackActivity() called")
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
         finish()
     }
 
@@ -91,9 +89,7 @@ class SelectActivity : AppCompatActivity() {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
             startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
             photoFile = file
-
         }
-
     }
 
     // 유저 체크
@@ -123,6 +119,8 @@ class SelectActivity : AppCompatActivity() {
         }
 
     }
+
+    // 서버 전송
     private fun img_networking(urlString: String, file: File) {
         // URL을 만들어 주고
         val url = URL(urlString)
@@ -146,13 +144,13 @@ class SelectActivity : AppCompatActivity() {
         // 클라이언트 생성
         val client = OkHttpClient()
 
-        Log.d("전송 주소 ",urlString)
+        Log.d(TAG,"전송 주소 $urlString")
         // 요청 전송
         client.newCall(request).enqueue(object : Callback {
 
             override fun onResponse(call: Call, response: Response) {
-                Log.d("요청","요청 완료")
-                Log.d("파일 이름:", photoFile.name)
+                Log.d(TAG,"요청 완료")
+                Log.d(TAG,"파일 이름: ${photoFile.name}")
 
 //                val result: String = Gson().toJson(response.body()!!.string())
 //                Log.d("JSON", result)
@@ -162,14 +160,16 @@ class SelectActivity : AppCompatActivity() {
                 val obj = json.getString("object")
                 val price = json.getString("price")
                 val facts = json.getString("nutrition_facts")
+                val event = json.getString("event")
                 Handler(Looper.getMainLooper()).post{
                     Toast.makeText(applicationContext, obj,Toast.LENGTH_SHORT).show()
                     Toast.makeText(applicationContext, price+"원",Toast.LENGTH_SHORT).show()
                     Toast.makeText(applicationContext, facts,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, event,Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call, e: IOException) {
-                Log.d("요청","요청 실패 ")
+                Log.d(TAG,"서버 요청 실패 ")
             }
         })
 
@@ -187,7 +187,7 @@ class SelectActivity : AppCompatActivity() {
 //                        binding.image.setImageBitmap(it) }
 //                    Glide.with(this).load(photoFile).into(binding.image)
 //                    Log.d(TAG, "$photoFile")
-                    img_networking("http://3.36.99.241:5000/img", photoFile)
+                    img_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/img", photoFile)
                 } else {
                     Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
                 }
