@@ -36,6 +36,7 @@ class DrinkCamera : AppCompatActivity() {
     private val RQ_SOEECH_REC = 102
     private lateinit var photoFile: File
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drink_camera)
@@ -189,6 +190,7 @@ class DrinkCamera : AppCompatActivity() {
         client.newCall(request).enqueue(object : Callback{
             override fun onResponse(call: Call, response: Response) {
                 Log.d(TAG, "요청 완료")
+                CameraChecked()
             }
             override fun onFailure(call: Call, e: IOException) {
                 Log.d(TAG, "서버 요청 실패 ")
