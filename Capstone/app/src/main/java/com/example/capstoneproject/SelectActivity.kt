@@ -188,7 +188,7 @@ class SelectActivity : AppCompatActivity() {
 //                        binding.image.setImageBitmap(it) }
 //                    Glide.with(this).load(photoFile).into(binding.image)
 //                    Log.d(TAG, "$photoFile")
-                    img_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/img", photoFile)
+                    img_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/imgInformation", photoFile)
                 } else {
                     Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
                 }

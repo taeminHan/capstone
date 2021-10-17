@@ -113,7 +113,7 @@ class DrinkCamera : AppCompatActivity() {
 //                        binding.image.setImageBitmap(it) }
 //                    Glide.with(this).load(photoFile).into(binding.image)
 //                    Log.d(TAG, "$photoFile")
-                    img_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/img", photoFile)
+                    img_search_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/imgSearch", photoFile)
                 } else {
                     Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
                 }
@@ -121,7 +121,7 @@ class DrinkCamera : AppCompatActivity() {
         }
     }
 
-    private fun img_networking(urlString: String, file: File) {
+    private fun img_search_networking(urlString: String, file: File) {
         // URL을 만들어 주고
         val url = URL(urlString)
 
@@ -157,15 +157,11 @@ class DrinkCamera : AppCompatActivity() {
                 val resStr = response.body!!.string()
                 val json = JSONObject(resStr)
 
-                val obj = json.getString("object")
-                val price = json.getString("price")
-                val facts = json.getString("nutrition_facts")
-                val event = json.getString("event")
+                val place = json.getString("place")
+
                 Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(applicationContext, obj, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(applicationContext, price, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(applicationContext, facts, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(applicationContext, event, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, place, Toast.LENGTH_SHORT).show()
+
                 }
             }
 
@@ -198,5 +194,6 @@ class DrinkCamera : AppCompatActivity() {
 
         })
     }
+
 }
 
