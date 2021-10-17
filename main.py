@@ -1,5 +1,5 @@
 from Detection_img import predict
-from flask import jsonify
+from flask import jsonify, request
 import flask
 import werkzeug
 import time
@@ -9,6 +9,7 @@ import pymysql
 import xmltodict
 import json
 import requests
+import os
 from bs4 import BeautifulSoup
 
 mydb = pymysql.connect(
@@ -47,7 +48,9 @@ def handle_request():
         else:
             event = "행사상품이아닙니다."
 
+        os.remove(timestr + '_' + filename)
     return jsonify({'object': name, 'price': price[0][1]+"원", 'nutrition_facts': nutrition[0][1:], 'event':event})
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -58,4 +61,10 @@ def login():
     mydb.commit()
 
     return {post_result}
+@app.route('/text', methods=['GET', 'POST'])
+def text():
+    texts = request.form
+    print(texts['beveragename'])
+
+    return jsonify("")
 app.run(host="0.0.0.0", port=5000, debug=True)
