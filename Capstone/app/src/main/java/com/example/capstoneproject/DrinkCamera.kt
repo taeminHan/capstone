@@ -101,7 +101,7 @@ class DrinkCamera : AppCompatActivity() {
             Log.d(TAG, result?.get(0).toString())
             VoiceText = result?.get(0).toString()
             if (resultCode == RESULT_OK) {
-                text_networking("http:/192.168.1.105:5000/text", VoiceText)
+                text_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/text", VoiceText)
             }
         }
         // 사진 찍은 후 결과값
@@ -112,7 +112,7 @@ class DrinkCamera : AppCompatActivity() {
 //                        binding.image.setImageBitmap(it) }
 //                    Glide.with(this).load(photoFile).into(binding.image)
 //                    Log.d(TAG, "$photoFile")
-                    img_networking("http:/192.168.1.105:5000/img", photoFile)
+                    img_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/img", photoFile)
                 } else {
                     Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
                 }
