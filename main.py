@@ -23,8 +23,8 @@ mycursor = mydb.cursor()
 app = flask.Flask(__name__)
 
 
-@app.route('/img', methods=['GET', 'POST'])
-def handle_request():
+@app.route('/imgInformation', methods=['GET', 'POST'])
+def imageInformation():
     files_ids = list(flask.request.files)
     image_num = 1
     for file_id in files_ids:
@@ -67,4 +67,19 @@ def text():
     print(texts['beveragename'])
 
     return jsonify("")
+@app.route('/imgSearch', methods=['GET', 'POST'])
+def imgSearch():
+    files_ids = list(flask.request.files)
+    image_num = 1
+    for file_id in files_ids:
+        imagefile = flask.request.files[file_id]
+        filename = werkzeug.utils.secure_filename(imagefile.filename)
+        timestr = time.strftime("%Y%m%d-%H%M%S")
+        imagefile.save(timestr + '_' + filename)
+        image_num = image_num + 1
+        place = ""
+
+        os.remove(timestr + '_' + filename)
+    return jsonify({'place': place})
+
 app.run(host="0.0.0.0", port=5000, debug=True)
