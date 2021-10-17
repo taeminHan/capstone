@@ -12,6 +12,7 @@ import androidx.core.content.FileProvider
 import com.example.capstoneproject.databinding.ActivitySelectBinding
 import com.google.firebase.auth.FirebaseAuth
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
 import java.io.File
 import java.io.IOException
@@ -134,7 +135,7 @@ class SelectActivity : AppCompatActivity() {
             .addFormDataPart(
                 "photo",
                 "photo.png",
-                RequestBody.create(MediaType.parse("image/jpg"), file)
+                RequestBody.create("image/jpg".toMediaTypeOrNull(), file)
             )
             .build()
         val request = Request.Builder()
@@ -154,7 +155,7 @@ class SelectActivity : AppCompatActivity() {
 
 //                val result: String = Gson().toJson(response.body()!!.string())
 //                Log.d("JSON", result)
-                val resStr = response.body()!!.string()
+                val resStr = response.body!!.string()
                 val json = JSONObject(resStr)
 
                 val obj = json.getString("object")
@@ -163,7 +164,7 @@ class SelectActivity : AppCompatActivity() {
                 val event = json.getString("event")
                 Handler(Looper.getMainLooper()).post{
                     Toast.makeText(applicationContext, obj,Toast.LENGTH_SHORT).show()
-                    Toast.makeText(applicationContext, price+"원",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, price,Toast.LENGTH_SHORT).show()
                     Toast.makeText(applicationContext, facts,Toast.LENGTH_SHORT).show()
                     Toast.makeText(applicationContext, event,Toast.LENGTH_SHORT).show()
                 }

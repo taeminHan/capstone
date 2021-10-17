@@ -60,7 +60,7 @@ dependencies {
     implementation files('libs/libDaumMapAndroid.jar')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/libDaumMapAndroid.jar')
-
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -89,5 +89,4 @@ dependencies {
     // GSON 컨버터 추가
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
-    implementation 'org.tensorflow:tensorflow-lite:+'
 }
