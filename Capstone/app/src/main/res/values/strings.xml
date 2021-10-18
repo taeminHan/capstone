@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Capstone Project</string>
+    <string name="defaultwebclientid" translatable="false">574588398521-5ubs381ku6rhuehu4m1gk0ippt63nsf5.apps.googleusercontent.com</string>
 </resources>

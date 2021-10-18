@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         // 구글 로그인 구성하기
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string.defaultwebclientid))
                 .requestEmail() // 구글 이메일 로그인
                 .build()
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
