@@ -24,7 +24,6 @@ import okhttp3.RequestBody
 import okhttp3.OkHttpClient
 
 
-
 private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
 // 음성텍스트 저장
 private var VoiceText = ""
@@ -53,7 +52,7 @@ class DrinkCamera : AppCompatActivity() {
         }
 
         binding.ServerTest.setOnClickListener {
-            CameraChecked()
+            CameraChecked2()
         }
     }
 
@@ -194,6 +193,16 @@ class DrinkCamera : AppCompatActivity() {
 
         })
     }
-
+    private fun CameraChecked2() {
+        val intent = Intent(applicationContext, Camera::class.java)
+        if (intent.resolveActivity(packageManager) != null) {
+            val dir = externalCacheDir
+            val file = File.createTempFile("photo_", ".jpg", dir)
+            val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
+            photoFile = file
+        }
+    }
 }
 

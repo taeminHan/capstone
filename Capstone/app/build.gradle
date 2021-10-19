@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.capstoneproject"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -25,6 +25,9 @@ android {
     }
 
     buildTypes {
+        debug{
+            testCoverageEnabled false
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -51,6 +54,7 @@ android {
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android-extensions'
 
 dependencies {
 
@@ -77,6 +81,9 @@ dependencies {
 
     // 의존성 추가
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'androidx.camera:camera-view:1.0.0-alpha23'
+    implementation 'androidx.camera:camera-lifecycle:1.1.0-alpha03'
+    implementation 'androidx.camera:camera-camera2:1.0.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -88,5 +95,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.7'
     // GSON 컨버터 추가
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+
+    implementation("com.louiscad.splitties:splitties-fun-pack-android-base:3.0.0-beta03")
+    implementation 'androidx.palette:palette:1.0.0'
+
 
 }

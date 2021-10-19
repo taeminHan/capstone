@@ -3,7 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/drawable/bg_round_button_a593e0.xml" value="0.2234375" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/drawable/ic_luncher_background.xml" value="0.2234375" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/activity_camera.xml" value="0.1" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/activity_color_average.xml" value="0.338768115942029" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/activity_color_detail.xml" value="0.338768115942029" />
         <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/activity_drink_camera.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/activity_lunch.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/activity_main.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/activity_searchmap.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/camertest.xml" value="0.34646739130434784" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/filepaths.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/fragment_camera2_basic.xml" value="0.1" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/main.xml" value="0.20729166666666668" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/layout/view_holder_navigation.xml" value="0.338768115942029" />
+        <entry key="..\:/Users/Jang/AndroidStudioProjects/capstone/Capstone/app/src/main/res/xml/filepaths.xml" value="0.20729166666666668" />
       </map>
     </option>
   </component>
