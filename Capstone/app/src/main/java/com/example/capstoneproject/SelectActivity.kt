@@ -20,7 +20,7 @@ import java.net.URL
 
 
 private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
-private const val TAG = "GOOGLE_SIGN_IN_TAG"
+const val TAG = "GOOGLE_SIGN_IN_TAG"
 
 class SelectActivity : AppCompatActivity() {
     // 뷰 바인딩
