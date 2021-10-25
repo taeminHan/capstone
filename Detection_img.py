@@ -34,7 +34,6 @@ def predict(f):
 
     prediction = model.predict(X)
 
-    print(prediction)
     np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
     cnt = 0
 
@@ -46,7 +45,7 @@ def predict(f):
             pre_ans_str = "코카콜라"
         elif pre_ans == 1:
             pre_ans_str = "레드불"
-        elif pre_ans == 3:
+        elif pre_ans == 2:
             pre_ans_str = "칠성사이다"
 
         if i[0] >= 0.8:

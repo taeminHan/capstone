@@ -50,7 +50,7 @@ def imageInformation():
         else:
             event = "행사상품이아닙니다."
 
-        """os.remove(timestr + '_' + filename)"""
+        os.remove(timestr + '_' + filename)
     return jsonify({'object': name, 'price': price[0][1]+"원", 'nutrition_facts': nutrition_facts, 'event':event})
 
 
@@ -80,7 +80,7 @@ def imageSearch():
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
         name = find(timestr + '_' + filename)
-        name = "당신이 고른 음료는"+ name +"입니다."
+        name = "당신이 고른 음료는" + name + "입니다."
 
         os.remove(timestr + '_' + filename)
     return jsonify({'name': name})
