@@ -52,9 +52,6 @@ class DrinkCamera : AppCompatActivity() {
             askSpeechInput()
         }
 
-        binding.ServerTest.setOnClickListener {
-            CameraChecked()
-        }
     }
 
     // 뒤로가기
@@ -86,7 +83,6 @@ class DrinkCamera : AppCompatActivity() {
         // 음성 인식 결과값 반환
         if (requestCode == RQ_SOEECH_REC && resultCode == Activity.RESULT_OK) {
             val result = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-            binding.result.text = result?.get(0).toString()
             Log.d(TAG, result?.get(0).toString())
             VoiceText = result?.get(0).toString()
             if (resultCode == RESULT_OK) {

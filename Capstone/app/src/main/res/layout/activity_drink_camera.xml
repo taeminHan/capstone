@@ -36,20 +36,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="버튼 눌러서 테스트 하기"
-            android:textAlignment="center"
-            android:textColor="#0054FF"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            tools:ignore="RtlCompat" />
-
-    </LinearLayout>
+        android:orientation="vertical"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,27 +53,6 @@
             android:text="음성 인식"
             android:textColor="#1E90FF"
             android:textSize="30dp"
-            android:textStyle="bold"
-            />
-
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="340dp"
-            android:layout_height="150dp"
-            android:text="음성 인식 결과"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textAlignment="center"
-            />
-
-        <Button
-            android:id="@+id/ServerTest"
-            android:layout_width="340dp"
-            android:layout_height="100dp"
-            android:background="@drawable/btn_background"
-            android:text="음성 텍스트 서버로 보내기"
-            android:textColor="#1E90FF"
-            android:textSize="20dp"
             android:textStyle="bold"
             />
 
