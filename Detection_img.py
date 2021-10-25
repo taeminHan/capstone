@@ -46,8 +46,6 @@ def predict(f):
             pre_ans_str = "코카콜라"
         elif pre_ans == 1:
             pre_ans_str = "레드불"
-        elif pre_ans == 2:
-            pre_ans_str = "밀키스"
         elif pre_ans == 3:
             pre_ans_str = "칠성사이다"
 
@@ -56,6 +54,4 @@ def predict(f):
         if i[1] >= 0.8:
             return pre_ans_str
         if i[2] >= 0.8:
-            return pre_ans_str
-        if i[3] >= 0.8:
             return pre_ans_str
