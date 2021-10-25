@@ -24,6 +24,7 @@ import okhttp3.RequestBody
 import okhttp3.OkHttpClient
 
 
+
 private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
 // 음성텍스트 저장
 private var VoiceText = ""
@@ -52,7 +53,7 @@ class DrinkCamera : AppCompatActivity() {
         }
 
         binding.ServerTest.setOnClickListener {
-            CameraChecked2()
+            CameraChecked()
         }
     }
 
@@ -79,18 +80,6 @@ class DrinkCamera : AppCompatActivity() {
         }
     }
 
-    private fun CameraChecked() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (intent.resolveActivity(packageManager) != null) {
-            val dir = externalCacheDir
-            val file = File.createTempFile("photo_", ".jpg", dir)
-            val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-            startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
-            photoFile = file
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -101,74 +90,12 @@ class DrinkCamera : AppCompatActivity() {
             Log.d(TAG, result?.get(0).toString())
             VoiceText = result?.get(0).toString()
             if (resultCode == RESULT_OK) {
-                text_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/text", VoiceText)
-            }
-        }
-        // 사진 찍은 후 결과값
-        when (requestCode) {
-            REQUEST_CODE_FOR_IMAGE_CAPTURE -> {
-                if (resultCode == RESULT_OK) {
-//                    BitmapFactory.decodeFile(photoFile.absolutePath)?.let {
-//                        binding.image.setImageBitmap(it) }
-//                    Glide.with(this).load(photoFile).into(binding.image)
-//                    Log.d(TAG, "$photoFile")
-                    img_search_networking("http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/imgSearch", photoFile)
-                } else {
-                    Toast.makeText(this, "취소 되었습니다.", Toast.LENGTH_LONG).show()
-                }
+                text_networking("http:/192.168.1.105:5000/text", VoiceText)
             }
         }
     }
 
-    private fun img_search_networking(urlString: String, file: File) {
-        // URL을 만들어 주고
-        val url = URL(urlString)
 
-        //데이터를 담아 보낼 바디를 만든다
-//        val requestBody : RequestBody = FormBody.Builder()
-//            .add("id","아이디")
-//            .build()
-        // OkHttp Request 를 만들어준다.
-        val requestBody: RequestBody = MultipartBody.Builder().setType(MultipartBody.FORM)
-            .addFormDataPart(
-                "photo",
-                "photo.png",
-                RequestBody.create("image/jpg".toMediaTypeOrNull(), file)
-            )
-            .build()
-        val request = Request.Builder()
-            .url(url)
-            .post(requestBody)
-            .build()
-        // 클라이언트 생성
-        val client = OkHttpClient()
-
-        Log.d(TAG, "전송 주소 $urlString")
-        // 요청 전송
-        client.newCall(request).enqueue(object : Callback {
-
-            override fun onResponse(call: Call, response: Response) {
-                Log.d(TAG, "요청 완료")
-                Log.d(TAG, "파일 이름: ${photoFile.name}")
-
-//                val result: String = Gson().toJson(response.body()!!.string())
-//                Log.d("JSON", result)
-                val resStr = response.body!!.string()
-                val json = JSONObject(resStr)
-
-                val place = json.getString("place")
-
-                Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(applicationContext, place, Toast.LENGTH_SHORT).show()
-
-                }
-            }
-
-            override fun onFailure(call: Call, e: IOException) {
-                Log.d(TAG, "서버 요청 실패 ")
-            }
-        })
-    }
 
     private fun text_networking(urlString: String, text: String) {
         val url = URL(urlString)
@@ -193,13 +120,14 @@ class DrinkCamera : AppCompatActivity() {
 
         })
     }
-    private fun CameraChecked2() {
+    private fun CameraChecked() {
         val intent = Intent(applicationContext, Camera::class.java)
         if (intent.resolveActivity(packageManager) != null) {
             val dir = externalCacheDir
             val file = File.createTempFile("photo_", ".jpg", dir)
             val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            Camera.cameracheck = 2
             startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
             photoFile = file
         }

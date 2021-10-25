@@ -14,8 +14,8 @@
 
     <ImageButton
         android:id="@+id/btn_convert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="98dp"
+        android:layout_height="112dp"
         android:layout_gravity="center_horizontal|bottom"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 

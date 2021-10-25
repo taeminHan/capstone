@@ -1,9 +1,11 @@
 package com.example.capstoneproject
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.*
+import android.graphics.drawable.GradientDrawable
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -50,23 +52,24 @@ class Camera : AppCompatActivity() {
     private lateinit var mSensorManager: SensorManager
     private lateinit var photoFile: File
 
-    private val deviceOrientation: DeviceOrientation by lazy { DeviceOrientation() }
+    private val deviceOrientation = ORIENTATIONS
     private var mHeight: Int = 0
     private var mWidth: Int = 0
 
     var mCameraId = CAMERA_BACK
 
     companion object {
+        var cameracheck: Int = 0
         const val CAMERA_BACK = "0"
         const val CAMERA_FRONT = "1"
 
-        private val ORIENTATIONS = SparseIntArray()
+        private val ORIENTATIONS = SparseIntArray(4)
 
         init {
-            ORIENTATIONS.append(ExifInterface.ORIENTATION_NORMAL, 0)
-            ORIENTATIONS.append(ExifInterface.ORIENTATION_ROTATE_90, 90)
-            ORIENTATIONS.append(ExifInterface.ORIENTATION_ROTATE_180, 180)
-            ORIENTATIONS.append(ExifInterface.ORIENTATION_ROTATE_270, 270)
+            ORIENTATIONS.append(Surface.ROTATION_0, 90)
+            ORIENTATIONS.append(Surface.ROTATION_90, 0)
+            ORIENTATIONS.append(Surface.ROTATION_180, 270)
+            ORIENTATIONS.append(Surface.ROTATION_270, 180)
         }
     }
 
@@ -218,21 +221,7 @@ class Camera : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
 
-        mSensorManager.registerListener(
-            deviceOrientation.eventListener, mAccelerometer, SensorManager.SENSOR_DELAY_UI
-        )
-        mSensorManager.registerListener(
-            deviceOrientation.eventListener, mMagnetometer, SensorManager.SENSOR_DELAY_UI
-        )
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mSensorManager.unregisterListener(deviceOrientation.eventListener)
-    }
 
     private fun setAspectRatioTextureView(ResolutionWidth: Int, ResolutionHeight: Int) {
         if (ResolutionWidth > ResolutionHeight) {
@@ -301,6 +290,9 @@ class Camera : AppCompatActivity() {
                         } finally {
                             output?.close()
                         }
+                        var uri = Uri.fromFile(file)
+                        var bitmap: Bitmap = BitmapFactory.decodeFile(file.path)
+
 
                     } catch (e: FileNotFoundException) {
                         e.printStackTrace()
@@ -323,13 +315,12 @@ class Camera : AppCompatActivity() {
                     result: TotalCaptureResult
                 ) {
                     super.onCaptureCompleted(session, request, result)
-                    /*Toast.makeText(this@MainActivity, "Saved:$file", Toast.LENGTH_SHORT).show()*/
                     Toast.makeText(this@Camera, "사진이 촬영되었습니다", Toast.LENGTH_SHORT).show()
-                    img_networking(
-                        "http:/ec2-3-35-54-213.ap-northeast-2.compute.amazonaws.com:5000/imgInformation",
-                        photoFile
-                    )
-                    takePreview()
+                    when(cameracheck){
+                        1 -> img_networking("http:/192.168.1.105:5000/imgInformation", photoFile)
+                        2 -> img_search_networking("http:/192.168.1.105:5000/imgSearch", photoFile)
+                    }
+                    initCameraAndPreview()
                 }
             }
 
@@ -357,6 +348,52 @@ class Camera : AppCompatActivity() {
         }
     }
 
+    private fun img_search_networking(urlString: String, file: File) {
+        // URL을 만들어 주고
+        val url = URL(urlString)
+        //데이터를 담아 보낼 바디를 만든다
+//        val requestBody : RequestBody = FormBody.Builder()
+//            .add("id","아이디")
+//            .build()
+        // OkHttp Request 를 만들어준다.
+        val requestBody: RequestBody = MultipartBody.Builder().setType(MultipartBody.FORM)
+            .addFormDataPart(
+                "photo",
+                "photo.png",
+                RequestBody.create("image/jpg".toMediaTypeOrNull(), file)
+            )
+            .build()
+        val request = Request.Builder()
+            .url(url)
+            .post(requestBody)
+            .build()
+        // 클라이언트 생성
+        val client = OkHttpClient()
+
+        Log.d(TAG, "전송 주소 $urlString")
+        // 요청 전송
+        client.newCall(request).enqueue(object : Callback {
+
+            override fun onResponse(call: Call, response: Response) {
+                Log.d(TAG, "요청 완료")
+                Log.d(TAG, "파일 이름: ${photoFile.name}")
+
+//                val result: String = Gson().toJson(response.body()!!.string())
+//                Log.d("JSON", result)
+                val resStr = response.body!!.string()
+                val json = JSONObject(resStr)
+
+                val obj = json.getString("name")
+                Handler(Looper.getMainLooper()).post {
+                    Toast.makeText(applicationContext, obj, Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d(TAG, "서버 요청 실패 ")
+            }
+        })
+    }
     private fun img_networking(urlString: String, file: File) {
         // URL을 만들어 주고
         val url = URL(urlString)
@@ -397,16 +434,15 @@ class Camera : AppCompatActivity() {
                 val price = json.getString("price")
                 val facts = json.getString("nutrition_facts")
                 val event = json.getString("event")
-                Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(applicationContext, obj, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(applicationContext, price, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(applicationContext, facts, Toast.LENGTH_SHORT).show()
-                    Toast.makeText(applicationContext, event, Toast.LENGTH_SHORT).show()
+                Handler(Looper.getMainLooper()).post{
+                    Toast.makeText(applicationContext, obj,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, price,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, facts,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, event,Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call, e: IOException) {
-                Log.d(TAG, "서버 요청 실패 ")
+                Log.d(TAG,"서버 요청 실패 ")
             }
         })
 
