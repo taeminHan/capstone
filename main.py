@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 mydb = pymysql.connect(
         user='root',
-        passwd='qwer',
+        passwd='smtown05',
         host='localhost',
         db='sulivan',
         charset='utf8'
@@ -40,6 +40,7 @@ def imageInformation():
         sql3 = 'select * from event where beveragename like "%{}%"'.format(name)
         mycursor.execute(sql)
         nutrition = mycursor.fetchall()
+        nutrition_facts = "칼로리"+nutrition[0][1] + "지방"+nutrition[0][2] + "탄수화물" + nutrition[0][3] + "단백질" + nutrition[0][4]
         mycursor.execute(sql2)
         price = mycursor.fetchall()
         mycursor.execute(sql3)
@@ -49,8 +50,8 @@ def imageInformation():
         else:
             event = "행사상품이아닙니다."
 
-        os.remove(timestr + '_' + filename)
-    return jsonify({'object': name, 'price': price[0][1]+"원", 'nutrition_facts': nutrition[0][1:], 'event':event})
+        """os.remove(timestr + '_' + filename)"""
+    return jsonify({'object': name, 'price': price[0][1]+"원", 'nutrition_facts': nutrition_facts, 'event':event})
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -69,7 +70,7 @@ def text():
 
     return jsonify("")
 @app.route('/imgSearch', methods=['GET', 'POST'])
-def imgSearch():
+def imageSearch():
     files_ids = list(flask.request.files)
     image_num = 1
     for file_id in files_ids:
@@ -79,9 +80,9 @@ def imgSearch():
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
         name = find(timestr + '_' + filename)
-
+        name = "당신이 고른 음료는"+ name +"입니다."
 
         os.remove(timestr + '_' + filename)
     return jsonify({'name': name})
 
-app.run(host="0.0.0.0", port=80, debug=True)
+app.run(host="0.0.0.0", port=5000, debug=True)
