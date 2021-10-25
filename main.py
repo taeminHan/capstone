@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 mydb = pymysql.connect(
         user='root',
-        passwd='smtown05',
+        passwd='qwer',
         host='localhost',
         db='sulivan',
         charset='utf8'
@@ -34,7 +34,7 @@ def imageInformation():
         timestr = time.strftime("%Y%m%d-%H%M%S")
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
-        name = predict(timestr + '_' + filename)
+        name = find(timestr + '_' + filename)
         sql = 'select * from nutritionfacts where foodname like "%{}%"'.format(name)
         sql2 = 'select * from beverage where beveragename like "%{}%"'.format(name)
         sql3 = 'select * from event where beveragename like "%{}%"'.format(name)
@@ -84,4 +84,4 @@ def imgSearch():
         os.remove(timestr + '_' + filename)
     return jsonify({'name': name})
 
-app.run(host="0.0.0.0", port=5000, debug=True)
+app.run(host="0.0.0.0", port=80, debug=True)
