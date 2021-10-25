@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 mydb = pymysql.connect(
         user='root',
-        passwd='sulivan',
+        passwd='smtown05',
         host='localhost',
         db='sulivan',
         charset='utf8'
