@@ -1,4 +1,5 @@
 from Detection_img import predict
+from ContoursCV import find
 from flask import jsonify, request
 import flask
 import werkzeug
@@ -77,9 +78,10 @@ def imgSearch():
         timestr = time.strftime("%Y%m%d-%H%M%S")
         imagefile.save(timestr + '_' + filename)
         image_num = image_num + 1
-        place = ""
+        name = find(timestr + '_' + filename)
+
 
         os.remove(timestr + '_' + filename)
-    return jsonify({'place': place})
+    return jsonify({'name': name})
 
 app.run(host="0.0.0.0", port=5000, debug=True)
