@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MapApi">
+    tools:context=".RouteActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
             android:id="@+id/back"
             android:layout_width="70dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_arrow_white_24" />
+            android:src="@drawable/ic_baseline_arrow_white_24">
+        </ImageView>
 
         <TextView
             android:layout_width="180dp"
@@ -24,52 +25,53 @@
             android:text=" 편의점 안내"
             android:textColor="@android:color/white"
             android:textSize="30dp"
-            android:textStyle="bold" />
+            android:textStyle="bold">
+        </TextView>
 
     </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="72.5dp"
-        android:src="@drawable/test1">
+        android:src="@drawable/test1"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="138dp">
     </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:layout_width="30dp"
-            android:layout_height="30dp">
+            android:layout_height="match_parent">
         </TextView>
 
-        <Button
-            android:id="@+id/MyLocation"
-            android:text="현재 위치"
-            android:layout_width="120dp"
-            android:layout_height="match_parent">
-        </Button>
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text ="트래킹 모드"
+            android:textOn="활성화"
+            android:textOff="비활성화"
+
+            >
+        </ToggleButton>
 
         <TextView
             android:layout_width="30dp"
-            android:layout_height="30dp">
-        </TextView>
-
-        <Button
-            android:id="@+id/RouteActivity"
-            android:text="편의점탐색"
-            android:layout_width="120dp"
             android:layout_height="match_parent">
-        </Button>
+        </TextView>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayoutTmap"
+        android:id="@+id/routeLayoutTmap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
     </LinearLayout>
 
 </LinearLayout>

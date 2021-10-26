@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     // 상수
     private companion object {
         private const val RC_SIGN_IN = 100
-        private const val TAG = "GOOGLE_SIGN_IN_TAG"
+        const val TAG = "GOOGLE_SIGN_IN_TAG"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

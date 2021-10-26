@@ -5,18 +5,23 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
-    <!-- 카카오맵 기능 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <!-- 내 위치 찾기 기능 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 카메라 기능 -->
     <uses-feature android:name="android.hardware.camera.any" />
+
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
     <queries>
         <intent>
             <action android:name="android.speech.RecognitionService" />
@@ -31,17 +36,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneProject"
         android:usesCleartextTraffic="true">
-        android:label="APPNAME" android:icon="ICONNAME" android:requestLegacyExternalStorage="true"
-        <activity android:name=".DrinkCamera"></activity>
-
-        <!-- 카카오 네이티브키 등록 -->
+        <activity
+            android:name=".RouteActivity"
+            android:exported="false" />
+        <activity android:name=".DrinkCamera" /> <!-- 카카오 네이티브키 등록 -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="b1d829897604d5c81f79055f4135d866" />
 
         <activity android:name=".MapApi" />
         <activity android:name=".SearchMap" />
-        <activity android:name=".SelectActivity"/>
+        <activity android:name=".SelectActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,6 +55,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Camera" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -59,7 +65,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
     </application>
 
 </manifest>
