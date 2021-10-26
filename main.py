@@ -66,13 +66,14 @@ def login():
 @app.route('/text', methods=['GET', 'POST'])
 def text():
     texts = request.form
-    print(texts['beveragename'])
+    select_name = "당신이 찾는 음료는" + texts['beveragename'] + "입니다."
 
-    return jsonify("")
+    return jsonify({"name": select_name})
 @app.route('/imgSearch', methods=['GET', 'POST'])
 def imageSearch():
     files_ids = list(flask.request.files)
     image_num = 1
+
     for file_id in files_ids:
         imagefile = flask.request.files[file_id]
         filename = werkzeug.utils.secure_filename(imagefile.filename)
