@@ -17,6 +17,7 @@
         android:layout_width="98dp"
         android:layout_height="112dp"
         android:layout_gravity="center_horizontal|bottom"
+        android:text="촬영하기"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
 

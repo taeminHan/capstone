@@ -21,8 +21,8 @@ import com.example.capstoneproject.databinding.ActivityMapBinding
 import com.skt.Tmap.TMapGpsManager
 import com.skt.Tmap.TMapPoint
 import com.skt.Tmap.TMapView
-import net.daum.mf.map.api.MapPoint
-import net.daum.mf.map.api.MapView
+//import net.daum.mf.map.api.MapPoint
+//import net.daum.mf.map.api.MapView
 import java.lang.Exception
 import kotlin.system.exitProcess
 

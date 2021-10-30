@@ -28,6 +28,9 @@ class SearchMap : AppCompatActivity() {
         binding.back.setOnClickListener {
             BackActivity()
         }
+        binding.select2.setOnClickListener {
+            SelectButton2()
+        }
     }
 
     // 하단 버튼 클릭시
@@ -47,5 +50,12 @@ class SearchMap : AppCompatActivity() {
 //        startActivity(intent)
         finish()
     }
-
+    private fun SelectButton2() {
+        try {
+            val intent = Intent(this, FindTmap::class.java)
+            startActivity(intent)
+        } catch (e: Exception) {
+            Log.d(TAG, "SearchMap - SelectButton: ${e.message}")
+        }
+    }
 }

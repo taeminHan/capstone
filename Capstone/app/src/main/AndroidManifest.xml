@@ -11,7 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 카메라 기능 -->
     <uses-feature android:name="android.hardware.camera.any" />
-
+    <uses-permission android:name="android.permission.WRITE_OWNER_DATA"/>
+    <uses-permission android:name="android.permission.READ_OWNER_DATA"/>
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -23,6 +24,8 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <queries>
+        <package android:name="com.skt.skaf.l001mtm091" />
+        <package android:name="com.skt.tmap.ku" />
         <intent>
             <action android:name="android.speech.RecognitionService" />
         </intent>
@@ -35,7 +38,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CapstoneProject"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        >
         <activity
             android:name=".RouteActivity"
             android:exported="false" />
@@ -55,6 +60,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Camera" />
+        <activity android:name=".Tmap" />
+        <activity android:name=".FindTmap"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

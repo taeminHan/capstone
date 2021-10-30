@@ -317,8 +317,8 @@ class Camera : AppCompatActivity() {
                     super.onCaptureCompleted(session, request, result)
                     Toast.makeText(this@Camera, "사진이 촬영되었습니다", Toast.LENGTH_SHORT).show()
                     when(cameracheck){
-                        1 -> img_networking("http:/192.168.1.105:5000/imgInformation", photoFile)
-                        2 -> img_search_networking("http:/192.168.1.105:5000/imgSearch", photoFile)
+                        1 -> img_networking("http:/121.162.15.236:80/imgInformation", photoFile)
+                        2 -> img_search_networking("http:/121.162.15.236:80/imgSearch", photoFile)
                     }
                     initCameraAndPreview()
                 }

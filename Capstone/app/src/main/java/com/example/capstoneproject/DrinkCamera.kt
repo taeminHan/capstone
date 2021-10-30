@@ -86,7 +86,7 @@ class DrinkCamera : AppCompatActivity() {
             Log.d(TAG, result?.get(0).toString())
             VoiceText = result?.get(0).toString()
             if (resultCode == RESULT_OK) {
-                text_networking("http:/192.168.1.105:5000/text", VoiceText)
+                text_networking("http:/121.162.15.236:80/text", VoiceText)
             }
         }
     }
@@ -108,6 +108,13 @@ class DrinkCamera : AppCompatActivity() {
         client.newCall(request).enqueue(object : Callback{
             override fun onResponse(call: Call, response: Response) {
                 Log.d(TAG, "요청 완료")
+                val resStr = response.body!!.string()
+                val json = JSONObject(resStr)
+
+                val obj = json.getString("name")
+                Handler(Looper.getMainLooper()).post {
+                    Toast.makeText(applicationContext, obj, Toast.LENGTH_SHORT).show()
+                }
                 CameraChecked()
             }
             override fun onFailure(call: Call, e: IOException) {

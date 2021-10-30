@@ -11,20 +11,26 @@ import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import com.example.capstoneproject.databinding.ActivityRouteBinding
 import com.skt.Tmap.TMapData
 import com.skt.Tmap.TMapData.FindPathDataListenerCallback
 import com.skt.Tmap.TMapPoint
 import com.skt.Tmap.TMapPolyLine
 import com.skt.Tmap.TMapView
+import kotlinx.coroutines.delay
+import java.io.File
+
+private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
 
 class RouteActivity : AppCompatActivity() {
-
+    private lateinit var photoFile: File
     private lateinit var binding: ActivityRouteBinding
     val TAG = "GOOGLE_SIGN_IN_TAG"
 
@@ -54,8 +60,8 @@ class RouteActivity : AppCompatActivity() {
 
         // 선택한 목적지 위도 경도 가져오기 나중에 편의점 위치 데이터 불러오면 됨
         intent = intent
-        destLat = 37.3622461
-        destLon = 126.7375287
+        destLat = 37.651244
+        destLon = 126.670430
 
         // 출발지 목적지 경유지 같은 아이콘으로 설정
         val tMapData = TMapData()
@@ -66,7 +72,6 @@ class RouteActivity : AppCompatActivity() {
 
         // 현재 위치로 표시
         setGps()
-
         // 트레킹모드 활성화 여부, 버튼으로 동작
         tbTracking.setOnClickListener {
             if (tbTracking.isChecked)
@@ -142,5 +147,17 @@ class RouteActivity : AppCompatActivity() {
         tMapView!!.setSightVisible(toggle)
         tMapView!!.setTrackingMode(toggle)
         tMapView!!.zoomLevel = 17
+    }
+    private fun CameraChecked() {
+        val intent = Intent(applicationContext, com.example.capstoneproject.Camera::class.java)
+        if (intent.resolveActivity(packageManager) != null) {
+            val dir = externalCacheDir
+            val file = File.createTempFile("photo_", ".jpg", dir)
+            val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            Camera.cameracheck = 1
+            startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
+            photoFile = file
+        }
     }
 }
