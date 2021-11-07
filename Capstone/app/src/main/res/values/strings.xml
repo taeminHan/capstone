@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">Capstone Project</string>
-    <string name="defaultwebclientid" translatable="false">574588398521-5ubs381ku6rhuehu4m1gk0ippt63nsf5.apps.googleusercontent.com</string>
+    <string name="app_name">withsullivan</string>
+    <string name="withsullivan">With Sullivan</string>
+    <string name="kakao_loginbutton">kakao_logician</string>
+    <string name="with_sullivan">With Sullivan</string>
+    <string name="kakao_login">Kakao login</string>
+    <string name="kakao_login_button" />
+    <string name="photo">사진촬영</string>
+    <string name="camera" />
 </resources>

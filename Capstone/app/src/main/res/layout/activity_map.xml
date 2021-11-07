@@ -1,75 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MapApi">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="138dp"
-        android:background="#87CEFA"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_baseline_arrow_white_24" />
-
-        <TextView
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:text=" 편의점 안내"
-            android:textColor="@android:color/white"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+    android:background="@color/white"
+    tools:context=".MapActivity">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="72.5dp"
-        android:src="@drawable/test1">
-    </ImageView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="30dp">
-        </TextView>
-
-        <Button
-            android:id="@+id/MyLocation"
-            android:text="현재 위치"
-            android:layout_width="120dp"
-            android:layout_height="match_parent">
-        </Button>
-
-        <TextView
-            android:layout_width="30dp"
-            android:layout_height="30dp">
-        </TextView>
-
-        <Button
-            android:id="@+id/RouteActivity"
-            android:text="편의점탐색"
-            android:layout_width="120dp"
-            android:layout_height="match_parent">
-        </Button>
-
-    </LinearLayout>
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/button_1" />
 
     <LinearLayout
         android:id="@+id/linearLayoutTmap"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-    </LinearLayout>
+        android:layout_width="350dp"
+        android:layout_height="600dp"
+        android:layout_marginEnd="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496" />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
