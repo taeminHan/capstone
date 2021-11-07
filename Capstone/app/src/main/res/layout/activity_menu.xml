@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:theme="@style/Theme.AppCompat.NoActionBar"
+    tools:context=".MenuActivity">
+
+
+    <Button
+        android:id="@+id/mapbutton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="277dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_2"
+        android:gravity="center"
+        android:text="편의점 찾기"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.348" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="351dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/nanumgothic"
+        android:gravity="center"
+        android:text="원하는 기능을 선택하세요"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/mapbutton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/drink_mode_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="277dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_2"
+        android:gravity="center"
+        android:text="음료 찾기"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.849" />
+
+    <Button
+        android:id="@+id/detectmodebutton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="277dp"
+        android:layout_height="120dp"
+        android:background="@drawable/button_2"
+        android:gravity="center"
+        android:text="상품 인식"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.599" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
