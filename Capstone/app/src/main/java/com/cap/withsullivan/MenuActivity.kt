@@ -65,7 +65,7 @@ class MenuActivity : AppCompatActivity() {
                 val file = File.createTempFile("photo_", ".jpg", dir)
                 val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-//            Camera.cameracheck = 1
+                DetectActivity.cameracheck = 1
                 startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
                 photoFile = file
                 Log.d(TAG, "상품 인식 성공")

@@ -123,7 +123,7 @@ class Voicesearch : AppCompatActivity() {
             val file = File.createTempFile("photo_", ".jpg", dir)
             val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-//            Camera.cameracheck = 2
+            DetectActivity.cameracheck = 2
             startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
             photoFile = file
         }
