@@ -55,10 +55,6 @@
             android:name=".DetectActivity"
             android:exported="true" />
 
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="e8f3732d36d621e7d5afb540cd9fd88c" />
-
         <activity
             android:name=".MapActivity"
             android:exported="true" />

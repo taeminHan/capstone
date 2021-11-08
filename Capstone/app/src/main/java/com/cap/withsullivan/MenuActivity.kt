@@ -32,10 +32,6 @@ class MenuActivity : AppCompatActivity() {
         val binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val test = 123
-        val intent2 = Intent(this, SearchMap::class.java)
-        intent2.putExtra("Test", test)
-
         // 카메라 권한 사용
         checkPermission()
 

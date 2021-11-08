@@ -20,6 +20,7 @@
         app:srcCompat="@drawable/button_1" />
 
     <LinearLayout
+        android:visibility="invisible"
         android:id="@+id/linearLayoutTmap"
         android:layout_width="350dp"
         android:layout_height="600dp"
@@ -31,6 +32,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.496" />
+
+    <TextView
+        android:id="@+id/Drawing"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="56dp"
+        android:text="편의점 경로 그리는 중"
+        android:fontFamily="@font/nanumgothic"
+        android:gravity="center"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
