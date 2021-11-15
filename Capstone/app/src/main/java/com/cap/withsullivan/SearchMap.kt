@@ -183,20 +183,6 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
 //            m_mapPoint.get(0).longitude.toFloat(), m_mapPoint.get(0).latitude.toFloat(), 0, true)
 //        CameraChecked()
 //    }
-
-    // 카메라 구현
-    private fun CameraChecked() {
-        val intent = Intent(applicationContext, DetectActivity::class.java)
-        if (intent.resolveActivity(packageManager) != null) {
-            val dir = externalCacheDir
-            val file = File.createTempFile("photo_", ".jpg", dir)
-            val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-            DetectActivity.cameracheck = 1
-            startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
-            photoFile = file
-        }
-    }
 }
 
 
