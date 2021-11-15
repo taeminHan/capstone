@@ -8,6 +8,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
@@ -15,18 +16,23 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.cap.withsullivan.databinding.ActivityMapBinding
 import com.skt.Tmap.TMapData
 import com.skt.Tmap.TMapGpsManager
 import com.skt.Tmap.TMapPoint
 import com.skt.Tmap.TMapView
+import java.io.File
 import java.util.*
+
+private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
 
 class MapActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private val TAG = "Test"
     var tts: TextToSpeech? = null
 
+    private lateinit var photoFile: File
     val binding by lazy { ActivityMapBinding.inflate(layoutInflater) }
 
     var lm: LocationManager? = null
@@ -162,7 +168,7 @@ class MapActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
                     } else if (2 * nodeCurrent + 2 > path_coor.size) {
                         toast("메인화면으로 돌아갑니다.")
-                        startActivity(intent)
+                        CameraChecked()
                         lm!!.removeUpdates(this)
                         finish()
                     }
@@ -268,6 +274,19 @@ class MapActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
         } else {
             Toast.makeText(this, "Initilization Failed!", Toast.LENGTH_SHORT).show()
+        }
+    }
+    // 카메라 구현
+    private fun CameraChecked() {
+        val intent = Intent(applicationContext, DetectActivity::class.java)
+        if (intent.resolveActivity(packageManager) != null) {
+            val dir = externalCacheDir
+            val file = File.createTempFile("photo_", ".jpg", dir)
+            val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+            DetectActivity.cameracheck = 1
+            startActivityForResult(intent, REQUEST_CODE_FOR_IMAGE_CAPTURE)
+            photoFile = file
         }
     }
 }

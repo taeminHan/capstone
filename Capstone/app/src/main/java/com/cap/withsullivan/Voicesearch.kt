@@ -91,7 +91,7 @@ class Voicesearch : AppCompatActivity() {
                     Handler(Looper.getMainLooper()).post {
                         Toast.makeText(this@Voicesearch, "서버 요청 성공", Toast.LENGTH_SHORT).show()
                     }
-                    val resStr = response.body()!!.string()
+                    val resStr = response.body!!.string()
                     val json = JSONObject(resStr)
 
                     val obj = json.getString("name")

@@ -28,7 +28,9 @@ import androidx.core.app.ActivityCompat
 import com.cap.withsullivan.databinding.ActivityDetectBinding
 import kotlinx.android.synthetic.main.activity_detect.*
 import okhttp3.*
-//import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.*
 import java.net.URL
@@ -371,7 +373,7 @@ class DetectActivity : AppCompatActivity() {
             .addFormDataPart(
                 "photo",
                 "photo.png",
-//                RequestBody.create("image/jpg".toMediaTypeOrNull(), file)
+                RequestBody.create("image/jpg".toMediaTypeOrNull(), file)
             )
             .build()
         val request = Request.Builder()
@@ -391,7 +393,7 @@ class DetectActivity : AppCompatActivity() {
 
 //                val result: String = Gson().toJson(response.body()!!.string())
 //                Log.d("JSON", result)
-                val resStr = response.body()!!.string()
+                val resStr = response.body!!.string()
                 val json = JSONObject(resStr)
 
                 val obj = json.getString("name")
@@ -416,7 +418,7 @@ class DetectActivity : AppCompatActivity() {
             .addFormDataPart(
                 "photo",
                 "photo.png",
-//                RequestBody.create("image/jpg".toMediaTypeOrNull(), file)
+                RequestBody.create("image/jpg".toMediaTypeOrNull(), file)
             )
             .build()
         val request = Request.Builder()
@@ -436,7 +438,7 @@ class DetectActivity : AppCompatActivity() {
 
 //                val result: String = Gson().toJson(response.body()!!.string())
 //                Log.d("JSON", result)
-                val resStr = response.body()!!.string()
+                val resStr = response.body!!.string()
                 val json = JSONObject(resStr)
 
                 val obj = json.getString("object")

@@ -150,7 +150,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         val tmapdata = TMapData()
         val point = tmapview!!.centerPoint
         tmapdata.findAroundNamePOI(
-            point, "편의점", 1, 10
+            point, "편의점", 1, 4
         ) { poiItem ->
             for (i in poiItem.indices) {
                 val item = poiItem[i]

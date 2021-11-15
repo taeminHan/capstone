@@ -38,7 +38,9 @@ android {
 }
 
 dependencies {
-
+    //okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.android.support:multidex:1.0.3'
     //Circle Image API
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     // Image binding (Glide)
