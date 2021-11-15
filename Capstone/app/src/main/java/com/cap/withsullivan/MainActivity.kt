@@ -1,16 +1,20 @@
 package com.cap.withsullivan
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.cap.withsullivan.databinding.ActivityMainBinding
+import java.util.*
 
+class MainActivity : AppCompatActivity() {
 
-class MainActivity : AppCompatActivity(){
-
-    private val TAG = "Test"
+    var mContext: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,11 +22,14 @@ class MainActivity : AppCompatActivity(){
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        mContext = this
+
         // 상태바 숨기기
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
         )
+
 
         val handler = Handler()
         handler.postDelayed(Runnable {
@@ -31,4 +38,5 @@ class MainActivity : AppCompatActivity(){
             finish()
         }, 3000)
     }
+
 }

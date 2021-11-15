@@ -24,8 +24,16 @@ import java.util.*
 
 private const val REQUEST_CODE_FOR_IMAGE_CAPTURE = 100
 
+// 편의점 위치 리스트
 var latitude_list = mutableListOf(1.0, 2.0, 3.0, 4.0)
 var longitude_list = mutableListOf(1.0, 2.0, 3.0, 4.0)
+
+// 버튼 클릭 후 내 위치
+var latitude_start = 0.0
+var longitude_start = 0.0
+// 편의점 이름 인식
+var scanname_list = mutableListOf("11", "11", "11", "11")
+var convenience_list = mutableListOf("1", "1", "1", "1")
 
 var choice: Int = 0
 
@@ -46,8 +54,13 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
     private lateinit var photoFile: File
 
     override fun onLocationChange(location: Location) {
-        tmapview!!.setLocationPoint(location.getLongitude(), location.getLatitude())
-        tmapview!!.setCenterPoint(location.getLongitude(), location.getLatitude())
+        tmapview!!.setLocationPoint(location.longitude, location.latitude)
+        tmapview!!.setCenterPoint(location.longitude, location.latitude)
+
+        latitude_start = location.latitude
+        longitude_start = location.longitude
+
+        Log.d(TAG, "$latitude_start, $longitude_start 현재위치")
 
         getAroundBizPoi()
     }
@@ -74,8 +87,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Select1.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 0
-            Log.d(TAG, latitude_list[0].toString())
-            Log.d(TAG, longitude_list[0].toString())
+            Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
             startActivity(intent)
             finish()
         }
@@ -83,8 +95,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Select2.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 1
-            Log.d(TAG, latitude_list[1].toString())
-            Log.d(TAG, longitude_list[1].toString())
+            Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
             startActivity(intent)
             finish()
         }
@@ -92,8 +103,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Select3.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 2
-            Log.d(TAG, latitude_list[2].toString())
-            Log.d(TAG, longitude_list[2].toString())
+            Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
             startActivity(intent)
             finish()
         }
@@ -101,11 +111,28 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Select4.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 3
-            Log.d(TAG, latitude_list[3].toString())
-            Log.d(TAG, longitude_list[3].toString())
+            Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun Read_convenience() {
+        for (i: Int in 0..3) {
+            scanname_list[i] = convenience_list[i][0].toString() + convenience_list[i][1].toString()
+            if (scanname_list[i] == "세븐") {
+                scanname_list[i] = "세븐일레븐"
+            } else if (scanname_list[i] == "GS") {
+                scanname_list[i] = "GS25"
+            } else if (scanname_list[i] == "이마") {
+                scanname_list[i] = "이마트24"
+            } else if (scanname_list[i] == "미니") {
+                scanname_list[i] = "미니스톱"
+            } else if (scanname_list[i] == "CU") {
+                scanname_list[i] = "CU"
+            }
+        }
+        Log.d(TAG, "$scanname_list")
     }
 
     //2. 주변 편의시설 검색하기
@@ -142,9 +169,11 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
                 for (i: Int in 0..3) {
                     latitude_list[i] = poiItem[i].poiPoint.latitude
                     longitude_list[i] = poiItem[i].poiPoint.longitude
+                    convenience_list[i] = poiItem[i].poiName
                 }
             }
             Choice_list()
+            Read_convenience()
         }
     }
     // 길안내
