@@ -20,11 +20,11 @@
 
     <ImageButton
         android:id="@+id/btn_convert"
-        android:layout_width="67dp"
-        android:layout_height="67dp"
+        android:contentDescription="촬영"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal|bottom"
         android:background="#00000000"
-        android:contentDescription="@string/camera"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

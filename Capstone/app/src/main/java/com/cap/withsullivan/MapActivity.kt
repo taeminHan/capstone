@@ -118,69 +118,53 @@ class MapActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         mLocationListener = object : LocationListener {
             var nodeCurrent = 0 // 알려주어야 할 노드가 무엇인지 알아봐야 하므로 알려주면 하나씩 증가
             override fun onLocationChanged(location: Location) {
-                if (location != null) {
-                    val longitude = location.longitude //경도
-                    val latitude = location.latitude //위도
+                val longitude = location.longitude //경도
+                val latitude = location.latitude //위도
 
-                    tMapView.setLocationPoint(longitude, latitude)
-                    tMapView.setCenterPoint(longitude, latitude, true)
-                    Log.d(TAG, "path size is : " + path.size + " path_coor is : " + path_coor.size + " nodecurrent: " + nodeCurrent)
-                    var intent = Intent(applicationContext, MenuActivity::class.java)
-                    if (nodeCurrent == 0) {
-                        binding.Drawing.visibility = View.INVISIBLE
-                        binding.linearLayoutTmap.visibility = View.VISIBLE
-                        if (path.size > 0 && path_coor.size > 0) {
-                            try {
-                                onRead("지금부터 안내를 시작할게요. ${path[nodeCurrent]} 하세요. 직진이에요.")
-                                Log.d(TAG, "음성 나오냐?")
-                            } catch (e: Exception) {
-                                Log.d(TAG, "${e.message} 음성 오류!! ㅈㅈ")
-                            }
-                            Log.d(TAG, "nodeCurrent: $nodeCurrent")
-                            Log.d(TAG, Integer.toString(path_coor.size))
-                            nodeCurrent++
-                        } else {
-                            Log.d("back step required: ", "path is 0 & path_coor is 0")
+                tMapView.setLocationPoint(longitude, latitude)
+                tMapView.setCenterPoint(longitude, latitude, true)
+                Log.d(TAG, "path size is : " + path.size + " path_coor is : " + path_coor.size + " nodecurrent: " + nodeCurrent)
+                var intent = Intent(applicationContext, MenuActivity::class.java)
+                if (nodeCurrent == 0) {
+                    binding.Drawing.visibility = View.INVISIBLE
+                    binding.linearLayoutTmap.visibility = View.VISIBLE
+                    if (path.size > 0 && path_coor.size > 0) {
+                        try {
+                            onRead("지금부터 안내를 시작할게요. ${path[nodeCurrent]} 하세요. 직진이에요.")
+                            Log.d(TAG, "음성 나오냐?")
+                        } catch (e: Exception) {
+                            Log.d(TAG, "${e.message} 음성 오류!! ㅈㅈ")
                         }
-
-                    } else if (2 * nodeCurrent + 2 < path_coor.size) {
-                        if (path_coor[2 * nodeCurrent] > longitude - 0.0001 && path_coor[2 * nodeCurrent] < longitude + 0.0001 && path_coor[2 * nodeCurrent + 1] > latitude - 0.0001 && path_coor[2 * nodeCurrent + 1] < latitude + 0.0001) {
-                            onRead(path[nodeCurrent] + "하세요.")
-
-                            Log.d(TAG, "nodeCurrent: $nodeCurrent")
-                            nodeCurrent++
-                        }
-
-                    } else if (2 * nodeCurrent + 2 == path_coor.size) {
-                        if (path_coor[2 * nodeCurrent] > longitude - 0.0001 && path_coor[2 * nodeCurrent] < longitude + 0.0001 && path_coor[2 * nodeCurrent + 1] > latitude - 0.0001 && path_coor[2 * nodeCurrent + 1] < latitude + 0.0001) {
-                            onRead(path[nodeCurrent] + "하셨어요. 안내를 종료할게요.")
-
-                            Log.d(TAG, "Got it!")
-                            Log.d(TAG, "nodeCurrent: $nodeCurrent")
-                            nodeCurrent++
-                        }
-
-                    } else if (2 * nodeCurrent + 2 > path_coor.size) {
-                        toast("메인화면으로 돌아갑니다.")
-                        startActivity(intent)
-                        lm!!.removeUpdates(this)
-                        finish()
+                        Log.d(TAG, "nodeCurrent: $nodeCurrent")
+                        Log.d(TAG, Integer.toString(path_coor.size))
+                        nodeCurrent++
+                    } else {
+                        Log.d("back step required: ", "path is 0 & path_coor is 0")
                     }
+
+                } else if (2 * nodeCurrent + 2 < path_coor.size) {
+                    if (path_coor[2 * nodeCurrent] > longitude - 0.0001 && path_coor[2 * nodeCurrent] < longitude + 0.0001 && path_coor[2 * nodeCurrent + 1] > latitude - 0.0001 && path_coor[2 * nodeCurrent + 1] < latitude + 0.0001) {
+                        onRead(path[nodeCurrent] + "하세요.")
+
+                        Log.d(TAG, "nodeCurrent: $nodeCurrent")
+                        nodeCurrent++
+                    }
+
+                } else if (2 * nodeCurrent + 2 == path_coor.size) {
+                    if (path_coor[2 * nodeCurrent] > longitude - 0.0001 && path_coor[2 * nodeCurrent] < longitude + 0.0001 && path_coor[2 * nodeCurrent + 1] > latitude - 0.0001 && path_coor[2 * nodeCurrent + 1] < latitude + 0.0001) {
+                        onRead(path[nodeCurrent] + "하셨어요. 안내를 종료할게요.")
+
+                        Log.d(TAG, "Got it!")
+                        Log.d(TAG, "nodeCurrent: $nodeCurrent")
+                        nodeCurrent++
+                    }
+
+                } else if (2 * nodeCurrent + 2 > path_coor.size) {
+                    toast("메인화면으로 돌아갑니다.")
+                    startActivity(intent)
+                    lm!!.removeUpdates(this)
+                    finish()
                 }
-            }
-
-            override fun onProviderDisabled(provider: String) {
-                // Disabled시
-                Log.d(TAG, "onProviderDisabled, provider:$provider")
-            }
-
-            override fun onProviderEnabled(provider: String) {
-                // Enabled시
-                Log.d(TAG, "onProviderEnabled, provider:$provider")
-            }
-
-            override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
-
             }
         }
         try {

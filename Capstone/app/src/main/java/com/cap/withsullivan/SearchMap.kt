@@ -84,7 +84,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         tmapgps!!.setProvider(TMapGpsManager.NETWORK_PROVIDER) //네트워크 기반의 위치탐색
         tmapgps!!.OpenGps()
 
-        binding.Select1.setOnClickListener {
+        binding.Text1.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 0
             Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
@@ -92,7 +92,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
             finish()
         }
 
-        binding.Select2.setOnClickListener {
+        binding.Text2.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 1
             Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
@@ -100,7 +100,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
             finish()
         }
 
-        binding.Select3.setOnClickListener {
+        binding.Text3.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 2
             Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
@@ -108,7 +108,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
             finish()
         }
 
-        binding.Select4.setOnClickListener {
+        binding.Text4.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 3
             Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
@@ -146,6 +146,10 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Select2.visibility = View.VISIBLE
         binding.Select3.visibility = View.VISIBLE
         binding.Select4.visibility = View.VISIBLE
+        binding.Text1.visibility = View.VISIBLE
+        binding.Text2.visibility = View.VISIBLE
+        binding.Text3.visibility = View.VISIBLE
+        binding.Text4.visibility = View.VISIBLE
 
         val tmapdata = TMapData()
         val point = tmapview!!.centerPoint

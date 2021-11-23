@@ -12,6 +12,7 @@
     <Button
         android:id="@+id/mapbutton"
         style="?android:attr/borderlessButtonStyle"
+        android:contentDescription="가까운 편의점을 찾아주는 기능."
         android:layout_width="277dp"
         android:layout_height="120dp"
         android:background="@drawable/button_2"
@@ -43,6 +44,7 @@
     <Button
         android:id="@+id/drink_mode_button"
         style="?android:attr/borderlessButtonStyle"
+        android:contentDescription="원하는 음료를 말씀하면 상품을 찾아주는 기능."
         android:layout_width="277dp"
         android:layout_height="120dp"
         android:background="@drawable/button_2"
@@ -59,6 +61,7 @@
     <Button
         android:id="@+id/detectmodebutton"
         style="?android:attr/borderlessButtonStyle"
+        android:contentDescription="카메라를 사용하여 상품 인식을 도와주는 기능."
         android:layout_width="277dp"
         android:layout_height="120dp"
         android:background="@drawable/button_2"
