@@ -46,6 +46,7 @@ dependencies {
     // Image binding (Glide)
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation files('libs\\com.skt.Tmap_1.69.jar')
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     //noinspection GradleCompatible

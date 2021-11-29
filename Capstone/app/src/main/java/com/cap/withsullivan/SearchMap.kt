@@ -31,6 +31,7 @@ var longitude_list = mutableListOf(1.0, 2.0, 3.0, 4.0)
 // 버튼 클릭 후 내 위치
 var latitude_start = 0.0
 var longitude_start = 0.0
+
 // 편의점 이름 인식
 var scanname_list = mutableListOf("11", "11", "11", "11")
 var convenience_list = mutableListOf("1", "1", "1", "1")
@@ -87,7 +88,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Text1.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 0
-            Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
+            toast(scanname_list[choice])
             startActivity(intent)
             finish()
         }
@@ -95,7 +96,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Text2.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 1
-            Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
+            toast(scanname_list[choice])
             startActivity(intent)
             finish()
         }
@@ -103,7 +104,7 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Text3.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 2
-            Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
+            toast(scanname_list[choice])
             startActivity(intent)
             finish()
         }
@@ -111,12 +112,13 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         binding.Text4.setOnClickListener {
             val intent = Intent(applicationContext, MapActivity::class.java)
             choice = 3
-            Toast.makeText(this, scanname_list[choice], Toast.LENGTH_SHORT).show()
+            toast(scanname_list[choice])
             startActivity(intent)
             finish()
         }
     }
 
+    // 편의점 종류 인식
     private fun Read_convenience() {
         for (i: Int in 0..3) {
             scanname_list[i] = convenience_list[i][0].toString() + convenience_list[i][1].toString()
@@ -154,39 +156,73 @@ class SearchMap : AppCompatActivity(), TMapGpsManager.onLocationChangedCallback 
         val tmapdata = TMapData()
         val point = tmapview!!.centerPoint
         tmapdata.findAroundNamePOI(
-            point, "편의점", 1, 4
+            point, "편의점", 1, 10
         ) { poiItem ->
             for (i in poiItem.indices) {
                 val item = poiItem[i]
                 Log.d(
                     TAG, "POI Name: " + item.poiName.toString() + ", " +
                             "Address: " + item.poiAddress.replace("null", "") + ", " +
-                            "Point: " + item.poiPoint.toString() +", Poiid: " +item.poiid
+                            "Point: " + item.poiPoint.toString() + ", Poiid: " + item.poiid
                 )
             }
-            binding.Text1.setText(poiItem[0].poiName.toString())
-            binding.Text2.setText(poiItem[1].poiName.toString())
-            binding.Text3.setText(poiItem[2].poiName.toString())
-            binding.Text4.setText(poiItem[3].poiName.toString())
 
-            fun Choice_list() {
-                for (i: Int in 0..3) {
-                    latitude_list[i] = poiItem[i].poiPoint.latitude
-                    longitude_list[i] = poiItem[i].poiPoint.longitude
-                    convenience_list[i] = poiItem[i].poiName
+            // 검색 결과 끝에 "주차장" 결과값 제거
+            var count = 0
+            while (true) {
+                if (poiItem[count].poiName.toString().endsWith("주차장")) {
+                    count += 1
+                } else {
+                    binding.Text1.setText(poiItem[count].poiName.toString())
+                    latitude_list[0] = poiItem[count].poiPoint.latitude
+                    longitude_list[0] = poiItem[count].poiPoint.longitude
+                    convenience_list[0] = poiItem[count].poiName
+                    break
                 }
             }
-            Choice_list()
+            count += 1
+            while (true) {
+                if (poiItem[count].poiName.toString().endsWith("주차장")) {
+                    count += 1
+                } else {
+                    binding.Text2.setText(poiItem[count].poiName.toString())
+                    latitude_list[1] = poiItem[count].poiPoint.latitude
+                    longitude_list[1] = poiItem[count].poiPoint.longitude
+                    convenience_list[1] = poiItem[count].poiName
+                    break
+                }
+            }
+            count += 1
+            while (true) {
+                if (poiItem[count].poiName.toString().endsWith("주차장")) {
+                    count += 1
+                } else {
+                    binding.Text3.setText(poiItem[count].poiName.toString())
+                    latitude_list[2] = poiItem[count].poiPoint.latitude
+                    longitude_list[2] = poiItem[count].poiPoint.longitude
+                    convenience_list[2] = poiItem[count].poiName
+                    break
+                }
+            }
+            count += 1
+            while (true) {
+                if (poiItem[count].poiName.toString().endsWith("주차장")) {
+                    count += 1
+                } else {
+                    binding.Text4.setText(poiItem[count].poiName.toString())
+                    latitude_list[3] = poiItem[count].poiPoint.latitude
+                    longitude_list[3] = poiItem[count].poiPoint.longitude
+                    convenience_list[3] = poiItem[count].poiName
+                    break
+                }
+            }
             Read_convenience()
         }
     }
-    // 길안내
-//    fun doload(){
-//        val tMapTapi = TMapTapi(this)
-//        tMapTapi.invokeNavigate(m_mapPoint.get(0).name,
-//            m_mapPoint.get(0).longitude.toFloat(), m_mapPoint.get(0).latitude.toFloat(), 0, true)
-//        CameraChecked()
-//    }
+    // toast 함수
+    fun toast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 }
 
 
